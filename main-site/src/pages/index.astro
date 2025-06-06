@@ -1,5 +1,12 @@
 ---
+import Layout from "../layouts/Layout.astro"
 
+const title = "Home Page";
 ---
 
+<Layout title={title}>
+    <h1>{title}</h1>
+    <a href="/about">Ke about page</a>
 
+    <div style="height: 2000px;"></div>
+</Layout>

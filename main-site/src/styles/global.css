@@ -1,0 +1,65 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.navbar {
+    top: 0;
+    left: 0;
+    z-index: 999;
+    width: 100%;
+    font-size: larger;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    box-sizing: border-box;
+}
+
+/* Initially hide dropdown menu on large screens */
+.dropdown-menu {
+    display: none;
+    font-size: 1.5rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.nav-left a,
+.nav-right a {
+    text-decoration: none;
+    margin: 0 0.5rem;
+}
+
+/* Style for the header */
+.site-header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: rgb(63, 242, 156);
+    transition: transform 0.3s ease-in-out;
+    z-index: 999;
+    will-change: transform;
+}
+
+/* When scrolling down, hide header by sliding it up */
+.site-header.hide {
+  transform: translateY(-100%);
+}
+
+.main {
+    padding-top: 2rem;         /* space for navbar */
+    max-width: 800px;          /* set to whatever width looks good */
+    margin: auto;            /* centers it horizontally */
+    padding-left: 1rem;        /* small left/right padding for spacing on small screens */
+    padding-right: 1rem;
+}
+
+.center {
+    margin: auto;
+}
+
+.separator {
+    margin: 0 0.5rem;
+}

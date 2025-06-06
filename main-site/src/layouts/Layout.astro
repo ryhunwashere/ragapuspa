@@ -1,0 +1,39 @@
+---
+const { title } = Astro.props;
+import "../styles/global.css";
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title} | The Music Group</title>
+  </head>
+  <body>
+    <header class="site-header">
+      <nav class="navbar">
+        <!-- Left aligned section -->
+        <div class="nav-left">
+          <a href="/">The Music Group</a>
+        </div>
+
+        <!-- Right aligned section -->
+        <div class="nav-right">
+          <a href="/about">About</a>
+          <span class="separator">.</span>
+          <a href="/music">Music</a>
+          <span class="separator">.</span>
+          <a href="/contact-us">Contact Us</a>
+        </div>
+      </nav>
+    </header>
+
+    <!-- Main content -->
+    <main class="main">
+      <slot />
+    </main>
+
+    <script src="/scripts/detectScroll.js" defer></script>
+  </body>
+</html>
