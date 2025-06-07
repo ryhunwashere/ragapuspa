@@ -18,8 +18,13 @@ import "../styles/global.css";
           <a href="/">Ragapuspa</a>
         </div>
 
+        <!-- Hamburger icon (visible only on small screens) -->
+        <button class="hamburger-menu" aria-label="Menu" onclick="toggleMenu()">
+          ☰
+        </button>
+
         <!-- Right aligned section -->
-        <div class="nav-right">
+        <div class="nav-right" id="navLinks">
           <a href="/about">About</a>
           <span class="separator">.</span>
           <a href="/music">Music</a>
@@ -34,6 +39,11 @@ import "../styles/global.css";
       <slot />
     </main>
 
+    <footer>
+
+    </footer>
+
     <script src="/scripts/detectScroll.js" defer></script>
+    <script src="/scripts/hamburgerMenuToggle.js" defer></script>
   </body>
 </html>

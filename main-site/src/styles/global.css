@@ -9,21 +9,64 @@
     left: 0;
     z-index: 999;
     width: 100%;
-    font-size: larger;
+    font-size: clamp(1rem, 1.4vw, 3rem);
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1rem 2rem;
+    padding: clamp(1rem, 1vw, 2rem);
     box-sizing: border-box;
 }
 
-/* Initially hide dropdown menu on large screens */
-.dropdown-menu {
+/* Show separators by default (large screens) */
+.separator {
+  display: inline;
+}
+
+/* Initially hide hamburger menu on large screens */
+.hamburger-menu {
     display: none;
     font-size: 1.5rem;
     background: none;
     border: none;
     cursor: pointer;
+}
+
+/* Navbar display on smaller screens */
+@media (max-width: 768px) {
+  .nav-right {
+    transform-origin: top;
+    transform: scaleY(0);
+    opacity: 0;
+    transition: transform 0.25s ease, opacity 0.25s ease;
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background-color: rgb(170, 220, 196);
+    text-align: center;
+  }
+
+  .nav-right a {
+    margin: 1rem 0;
+    padding: 0.5rem 0;
+    font-size: 1.2rem;
+  }
+
+  .nav-right.open {
+    transform: scaleY(1);
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .hamburger-menu {
+    display: block;
+  }
+
+  .separator {
+    display: none;
+  }
 }
 
 .nav-left a,
