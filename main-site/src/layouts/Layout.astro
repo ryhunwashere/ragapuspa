@@ -19,9 +19,7 @@ import "../styles/global.css";
         </div>
 
         <!-- Hamburger icon (visible only on small screens) -->
-        <button class="hamburger-menu" aria-label="Menu" onclick="toggleMenu()">
-          ☰
-        </button>
+        <button class="hamburger-menu" aria-label="Menu"> ☰ </button>
 
         <!-- Right aligned section -->
         <div class="nav-right" id="navLinks">
@@ -39,11 +37,7 @@ import "../styles/global.css";
       <slot />
     </main>
 
-    <footer>
-
-    </footer>
-
-    <script src="/scripts/detectScroll.js" defer></script>
-    <script src="/scripts/hamburgerMenuToggle.js" defer></script>
+    <!-- Run navbar animations -->
+    <script type="module" src="/src/scripts/navbarAnimations.client.js"></script>
   </body>
 </html>
