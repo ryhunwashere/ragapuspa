@@ -8,14 +8,24 @@ import "../styles/global.css";
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>{title} | Ragapuspa</title>
+    <title>{title} | Music Group</title>
+
+    <!-- Load GSAP first -->
+    <script
+      is:raw
+      src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js"
+    ></script>
+
+    <!-- Then load your animation logic -->
+    <script is:raw src="/scripts/navbarAnimations.js"></script>
   </head>
+
   <body>
     <header class="site-header">
       <nav class="navbar">
         <!-- Left aligned section -->
         <div class="nav-left">
-          <a href="/">Ragapuspa</a>
+          <a href="/">Music Group</a>
         </div>
 
         <!-- Hamburger icon (visible only on small screens) -->
@@ -36,8 +46,5 @@ import "../styles/global.css";
     <main class="main">
       <slot />
     </main>
-
-    <!-- Run navbar animations -->
-    <script type="module" src="/src/scripts/navbarAnimations.client.js"></script>
   </body>
 </html>
