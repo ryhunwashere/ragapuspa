@@ -1,13 +1,15 @@
 ---
-import Layout from "../layouts/baseLayout.astro"
+import DefaultLayout from "../layouts/defaultLayout.astro"
+import AlbumPromoScreen from "../components/AlbumPromoScreen.svelte"
 
 const title = "Home Page";
 ---
-
-<Layout title={title}>
+<DefaultLayout title={title}>
     <h1>{title}</h1>
-    <h1>Aku cinta Ragapuspa</h1>
-    <a href="/about">Ke about page</a>
+    <h2>kfn yh kita bisa terkenal</h2>
+    <a href="/about">About Page</a>
+    <a href="/album1">Album 1 Page</a>
 
     <div style="height: 2000px;"></div>
-</Layout>
+    <AlbumPromoScreen client:load />
+</DefaultLayout>

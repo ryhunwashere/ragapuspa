@@ -52,7 +52,7 @@
   <nav class="navbar">
     <!-- Left aligned section -->
     <div class="nav-left">
-      <a href="/">Music Group</a>
+      <a href="/">Ragapuspa</a>
     </div>
 
     <!-- Hamburger icon -->
