@@ -1,0 +1,25 @@
+---
+import AlbumNavbar from "../components/DefaultNavbar.svelte";
+// CSS files are imported individually on each album's page, not in the layout here.
+
+const { title } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title} | Ragapuspa</title>
+  </head>
+
+  <body>
+    <AlbumNavbar client:load />
+
+    <!-- Main content -->
+    <main class="main">
+      <slot />
+    </main>
+    
+  </body>
+</html>

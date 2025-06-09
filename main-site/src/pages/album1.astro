@@ -1,25 +1,11 @@
 ---
-import AlbumNavbar from "../components/AlbumNavbar.svelte";
+import AlbumLayout from "../layouts/albumLayout.astro";
 import "../styles/album1.css";
 
 const title = "Album 1";
 ---
-
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>{title} | Ragapuspa</title>
-  </head>
-
-  <body>
-    <AlbumNavbar client:load />
-
-    <!-- Main content -->
-    <main class="main">
-      <h1>Ini page untuk album kita</h1>
-      <div style="height: 2000px;"></div>
-    </main>
-  </body>
-</html>
+<AlbumLayout title={title}>
+    <h1>{title}</h1>
+    <h1>Ini page untuk album kita</h1>
+    <div style="height: 2000px;"></div>
+</AlbumLayout>
