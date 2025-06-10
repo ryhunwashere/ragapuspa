@@ -62,7 +62,7 @@
   <nav class="navbar">
     <!-- Left aligned section -->
     <div class="nav-left">
-      <a href="/">Music Group</a>
+      <a href="/">Ragapuspa</a>
     </div>
 
     <!-- Hamburger icon -->
@@ -77,11 +77,15 @@
 
     <!-- Right aligned section -->
     <div class="nav-right" id="navLinks" bind:this={navLinks}>
-      <a href="/about">About</a>
-      <span class="separator">.</span>
-      <a href="/music">Music</a>
-      <span class="separator">.</span>
-      <a href="/contact-us">Contact Us</a>
+      <a href="/music">music</a>
+      <span class="separator"></span>
+      <a href="/gallery">gallery</a>
+      <span class="separator"></span>
+      <a href="/merch">merch</a>
+      <span class="separator"></span>
+      <a href="/about">about</a>
+      <span class="separator"></span>
+      <a href="/contact-us">contact us</a>
     </div>
   </nav>
 </header>
@@ -92,20 +96,25 @@
     position: fixed;
     top: 0;
     width: 100%;
-    background-color: rgb(110, 228, 255);
     z-index: 999;
     will-change: transform;
+    backdrop-filter: blur(4px) saturate(150%);
   }
 
   /* Default variant */
   .site-header.default {
-    background-color: rgb(110, 228, 255); /* original color */
+    background-color: rgba(27, 75, 217, 0.695);
+  }
+  .site-header.default a {
+    color: white;
   }
 
   /* Album variant */
   .site-header.album {
-    background-color: rgb(137, 250, 145); /* example new color */
-    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
+    background-color: rgba(228, 9, 9, 0.5);
+  }
+  .site-header.album a {
+    color: white;
   }
 
   .navbar {
@@ -117,7 +126,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: clamp(1rem, 1vw, 2rem);
+    padding: clamp(0.5rem, 0.7rem, 2rem);
   }
 
   /* Default nav-right style for large screens */
@@ -140,7 +149,7 @@
   /* Hide separator on small screens */
   .separator {
     display: inline;
-    margin: 0 0.5rem;
+    margin: 0 0.2rem;
   }
 
   /* Hamburger icon default hidden on large screens */
