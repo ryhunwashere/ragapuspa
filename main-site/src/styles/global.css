@@ -10,9 +10,10 @@
 }
 
 .main {
-  padding-top: 4rem;
   max-width: 800px;
-  margin: auto;
-  padding-left: 1rem;
-  padding-right: 1rem;
+  margin: 0 auto; /* Horizontal centering */
+  padding: 4rem 1rem 0; /* Shorthand for top, left/right */
+  display: flex; /* Enable Flexbox */
+  flex-direction: column; /* Stack children vertically */
+  align-items: center; /* Center children horizontally */
 }

@@ -1,15 +1,46 @@
 ---
-import BaseLayout from "../layouts/BaseLayout.astro"
-import AlbumPromoScreen from "../components/AlbumPromoScreen.svelte"
+import BaseLayout from "../layouts/BaseLayout.astro";
+import AlbumPromoScreen from "../components/AlbumPromoScreen.svelte";
 
 const title = "Home Page";
 ---
-<BaseLayout title={title}>
-    <h1>{title}</h1>
-    <h2>Ini home page</h2>
-    <a href="/about">About Page</a>
-    <a href="/album1">Album 1 Page</a>
 
-    <div style="height: 2000px;"></div>
-    <AlbumPromoScreen client:load />
+<BaseLayout title={title}>
+  <section class="hero">
+    <div class="hero-image"></div>
+    <div class="hero-title">
+      <h1>Ragapuspa</h1>
+    </div>
+    <div class="hero-slogan">
+      <h2>Like-minded creative people creates together.</h2>
+    </div>
+    <div class="hero-description">
+      <p>
+        We are Ragapuspa, a doujin Circle from Indonesia that consists of
+        artists from multiple creative disciplines, like art, music, animation,
+        and even web design.
+      </p>
+    </div>
+  </section>
+  <a href="/album1">Album 1 Page</a>
+  <div style="height: 2000px;"></div>
+
+  <AlbumPromoScreen client:load />
 </BaseLayout>
+
+<style>
+  .hero {
+    width: 80%; /* Optional: Adjust as needed */
+    text-align: center; /* Center text inside the div */
+    padding: 2px;
+  }
+  .hero-title {
+    text-align: left;
+  }
+  .hero-slogan {
+    text-align: left;
+  }
+  .hero-description {
+    text-align: left;
+  }
+</style>
