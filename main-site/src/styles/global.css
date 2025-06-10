@@ -1,62 +1,7 @@
 * {
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
-}
-
-.navbar {
-  top: 0;
-  left: 0;
-  z-index: 999;
-  width: 100%;
-  font-size: clamp(1rem, 1.4vw, 3rem);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: clamp(1rem, 1vw, 2rem);
-}
-
-/* Default nav-right style for large screens */
-.nav-right {
-  display: flex;
-  flex-direction: row;
-  opacity: 1;
-  transform: scaleY(1);
-  pointer-events: auto;
-  position: static;
-  background-color: transparent;
-}
-
-
-/* Header container */
-.site-header {
-  position: fixed;
-  top: 0;
-  width: 100%;
-  background-color: rgb(63, 242, 156);
-  z-index: 999;
-  will-change: transform;
-}
-
-/* Hide separator on small screens */
-.separator {
-  display: inline;
-  margin: 0 0.5rem;
-}
-
-/* Hamburger icon default hidden on large screens */
-.hamburger-menu {
-  display: none;
-  font-size: 1.5rem;
-  background: none;
-  border: none;
-  cursor: pointer;
-}
-
-.nav-left a,
-.nav-right a {
-  text-decoration: none;
-  margin: 0 0.5rem;
 }
 
 .main {
@@ -65,33 +10,4 @@
   margin: auto;
   padding-left: 1rem;
   padding-right: 1rem;
-}
-
-@media (max-width: 768px) {
-  .nav-right {
-    transform-origin: top;
-    transform: scaleY(0);
-    opacity: 0;
-    pointer-events: none;
-    display: flex;
-    flex-direction: column;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    width: 100%;
-    background-color: rgb(170, 220, 196);
-    text-align: center;
-  }
-
-  .hamburger-menu {
-    display: block;
-  }
-
-  .separator {
-    display: none;
-  }
-
-  .nav-right a {
-    margin: 1rem 0;
-  }
 }

@@ -1,5 +1,5 @@
 ---
-import DefaultNavbar from "../components/DefaultNavbar.svelte";
+import Navbar from "../components/Navbar.svelte";
 import "../styles/global.css";
 import  VercelSpeedInsights  from "@vercel/speed-insights/astro"
 
@@ -16,7 +16,7 @@ const { title } = Astro.props;
   </head>
 
   <body>
-    <DefaultNavbar client:load />
+    <Navbar styleVariant="default" client:load />
 
     <!-- Main content -->
     <main class="main">

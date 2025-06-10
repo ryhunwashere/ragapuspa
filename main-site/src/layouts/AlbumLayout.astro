@@ -1,6 +1,6 @@
 ---
-import AlbumNavbar from "../components/AlbumNavbar.svelte";
-// CSS files are imported individually on each album's page, not in the layout here.
+import Navbar from "../components/Navbar.svelte";
+import "../styles/global.css";
 import  VercelSpeedInsights  from "@vercel/speed-insights/astro"
 
 const { title } = Astro.props;
@@ -16,7 +16,7 @@ const { title } = Astro.props;
   </head>
 
   <body>
-    <AlbumNavbar client:load />
+    <Navbar styleVariant="album" client:load />
 
     <!-- Main content -->
     <main class="main">
