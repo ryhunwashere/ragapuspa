@@ -92,8 +92,8 @@
     position: absolute;
     bottom: 2rem;
     width: 100%;
-    padding-left: 2rem; /* Add padding here */
-    padding-right: 2rem; /* Add padding here */
+    padding-left: 2rem;
+    padding-right: 2rem;
     box-sizing: border-box;
 
     text-align: center;
