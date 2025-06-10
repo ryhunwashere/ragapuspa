@@ -4,7 +4,7 @@
 
   let show = false;
 
-  const SECONDS = 5;
+  const MINUTES = 1;
   const TIME_KEY = "albumPromoLastSeen";
 
   onMount(() => {
@@ -12,7 +12,7 @@
       const lastSeen = localStorage.getItem(TIME_KEY);
       const now = Date.now();
 
-      if (!lastSeen || now - parseInt(lastSeen) > SECONDS * 1000) {
+      if (!lastSeen || now - parseInt(lastSeen) > MINUTES * 60 * 1000) {
         // Not shown yet, or enough time has passed
         show = true;
         localStorage.setItem(TIME_KEY, now.toString());
@@ -92,8 +92,8 @@
     position: absolute;
     bottom: 2rem;
     width: 100%;
-    padding-left: 2rem; /* Add padding here */
-    padding-right: 2rem; /* Add padding here */
+    padding-left: 2rem;
+    padding-right: 2rem;
     box-sizing: border-box;
 
     text-align: center;
