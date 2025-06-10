@@ -1,6 +1,8 @@
 ---
 import Navbar from "../components/Navbar.svelte";
+import Footer from "../components/Footer.svelte";
 import "../styles/global.css";
+
 import  VercelSpeedInsights  from "@vercel/speed-insights/astro"
 
 const { title } = Astro.props;
@@ -24,4 +26,6 @@ const { title } = Astro.props;
     </main>
     <VercelSpeedInsights />
   </body>
+
+  <Footer />
 </html>
