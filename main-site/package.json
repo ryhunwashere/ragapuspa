@@ -6,12 +6,15 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "generate-gallery": "node src/scripts/generateGalleryIndex.js"
   },
   "dependencies": {
     "@astrojs/svelte": "^7.1.0",
     "@vercel/speed-insights": "^1.2.0",
     "astro": "^5.9.0",
+    "cloudinary": "^2.6.1",
+    "dotenv": "^16.5.0",
     "gsap": "^3.13.0",
     "svelte": "^5.33.17",
     "typescript": "^5.8.3"
