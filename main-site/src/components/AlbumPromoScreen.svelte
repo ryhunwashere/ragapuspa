@@ -4,7 +4,7 @@
 
   let show = false;
 
-  const MINUTES = 1;
+  const MINUTES = 30;
   const TIME_KEY = "albumPromoLastSeen";
 
   onMount(() => {
