@@ -33,9 +33,6 @@ async function generateGalleryIndex() {
     const simplified = images.map(img => ({
       url: img.secure_url,
       public_id: img.public_id,
-      width: img.width,
-      height: img.height,
-      format: img.format,
     }));
 
     await writeFile(
