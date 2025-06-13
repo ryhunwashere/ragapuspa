@@ -13,7 +13,7 @@
 
 <style>
   footer {
-    background-image: url("https://res.cloudinary.com/djow2j0qk/image/upload/w_1920,f_webp,q_auto:good/v1749816121/hd_baum_nareko_wfc1cx.png");
+    background-image: url("https://res.cloudinary.com/djow2j0qk/image/upload/w_500,f_webp,q_auto:eco/v1749816121/hd_baum_nareko_wfc1cx.png");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;

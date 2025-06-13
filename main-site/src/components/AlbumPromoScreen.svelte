@@ -4,7 +4,7 @@
 
   let show = false;
 
-  const MINUTES = 30;
+  const MINUTES = 0.2;
   const TIME_KEY = "albumPromoLastSeen";
 
   onMount(() => {
@@ -32,7 +32,11 @@
     <div class="promo-content">
       <button class="close-btn" on:click={close}>&times;</button>
 
-      <img src="/magnificent_album_promo.jpg" alt="Promo" class="promo-image" />
+      <img
+        src="https://res.cloudinary.com/djow2j0qk/image/upload/w_1360,f_webp,q_auto:good/v1749647239/baum_shizuha_wide_liujua.jpg"
+        alt="Promo"
+        class="promo-image"
+      />
 
       <div class="promo-text">
         <h1>🎵 New Album Coming Soon!</h1>
@@ -79,6 +83,7 @@
   }
 
   .promo-image {
+    transform: scale(1.2);
     position: absolute;
     top: 0;
     left: 0;
