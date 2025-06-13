@@ -25,3 +25,5 @@ pnpm-debug.log*
 
 # Local Netlify folder
 .netlify
+
+main-site/src/data/gallery.json
