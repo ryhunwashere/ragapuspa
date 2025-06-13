@@ -7,7 +7,8 @@ const title = "Gallery";
 ---
 
 <BaseLayout title={title}>
-  <div style="height:3rem"></div>
-  <h1>{title}</h1>
-  <GalleryImages urls={urls} />
+  <div class="gallery-title" style="font-size: 2rem;">
+    <h1>Gallery</h1>
+  </div>
+  <GalleryImages urls={urls} client:load />
 </BaseLayout>
