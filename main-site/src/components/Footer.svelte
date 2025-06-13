@@ -5,13 +5,15 @@
       All original sources of derivative works based on Touhou Project belongs
       to Jun'ya Ota (ZUN) and Team Shanghai Alice.
     </p>
-    <p style="font-size:0.7rem; padding-top: 2rem;">Website made by Ryhun using Astro framework.</p>
+    <p style="font-size:0.7rem; padding-top: 2rem;">
+      Website made by Ryhun using Astro framework.
+    </p>
   </div>
 </footer>
 
 <style>
   footer {
-    background-image: url("/reimu_terbang.webp");
+    background-image: url("https://res.cloudinary.com/djow2j0qk/image/upload/w_1920,f_webp,q_auto:good/v1749816121/hd_baum_nareko_wfc1cx.png");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
