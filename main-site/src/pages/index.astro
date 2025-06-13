@@ -2,7 +2,7 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import AlbumPromoScreen from "../components/AlbumPromoScreen.svelte";
 
-const title = "Home Page";
+const title = "Home";
 ---
 
 <BaseLayout title={title}>
@@ -28,9 +28,7 @@ const title = "Home Page";
   </section>
   <a href="/album1">Album 1 Page</a>
 
-  <!-- for testing the navbar hiding -->
   <div style="height: 500px;"></div>
-
   <AlbumPromoScreen client:load />
 </BaseLayout>
 
@@ -57,7 +55,7 @@ const title = "Home Page";
   .hero-image {
     width: 100%;
     height: auto;
-    max-height: 100vh;
+    max-height: 95vh;
     display: block;
     object-fit: cover;
     object-position: center;
