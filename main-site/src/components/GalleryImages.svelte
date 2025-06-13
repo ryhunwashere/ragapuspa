@@ -1,11 +1,12 @@
 <script>
   export let urls = [];
 
-  const width = "640";
+  const width = "600";
   const format = "webp";
+  const quality = "auto:low";
 
   function transform(url) {
-    return url.replace(`/upload/`, `/upload/w_${width},f_${format},q_auto/`);
+    return url.replace(`/upload/`, `/upload/w_${width},f_${format},q_${quality}/`);
   }
 </script>
 
@@ -28,6 +29,7 @@
     width: 100%;
     max-width: 1600px;
     margin: 0 auto;
+    padding: 10px;
   }
 
   img {
