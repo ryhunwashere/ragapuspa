@@ -1,6 +1,7 @@
 <script>
   export let urls = [];
-  const width = "320";
+
+  const width = "640";
   const format = "webp";
 
   function transform(url) {
@@ -9,18 +10,43 @@
 </script>
 
 <div class="gallery">
-  {#each urls as { url, public_id }}
-    <img src={transform(url)} alt={public_id} loading="lazy" />
+  {#each urls as { url, public_id }, i}
+    <img
+      src={transform(url)}
+      alt={public_id}
+      loading="lazy"
+      class="fade-in"
+      style="animation-delay: {i * 30}ms"
+    />
   {/each}
 </div>
 
 <style>
-    img {
-        width: 100%;
-        object-fit: contain;
-        border-radius: 15px;
+  .gallery {
+    columns: 320px;
+    column-gap: 1rem;
+    width: 100%;
+    max-width: 1600px;
+    margin: 0 auto;
+  }
+
+  img {
+    width: 100%;
+    margin-bottom: 1rem;
+    object-fit: contain;
+    border-radius: 15px;
+    display: block;
+    break-inside: avoid; /* prevent image breaking across columns */
+  }
+
+  .fade-in {
+    opacity: 0;
+    animation: fadeIn 0.4s ease-in forwards;
+  }
+
+  @keyframes fadeIn {
+    to {
+      opacity: 1;
     }
-    .gallery {
-        columns: 320px;
-    }
+  }
 </style>

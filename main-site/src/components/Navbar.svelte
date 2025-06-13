@@ -2,13 +2,13 @@
   import { onMount } from "svelte";
   import gsap from "gsap";
 
-  export let styleVariant = "default"; // default fallback
-
+  export let styleVariant = "default";
   let isMenuOpen = false;
 
   let header;
   let navLinks;
   let hamburgerBtn;
+  let navRight;
 
   function toggleMenu() {
     isMenuOpen = !isMenuOpen;
@@ -38,26 +38,46 @@
     let lastScrollY = window.scrollY;
     let currentOffset = 0;
 
-    const scrollEffectStrength = 0.4; // Adjust this to control speed
+    const scrollEffectStrength = 0.4;
+    const transparencyThreshold = 4;
+    const backgroundOpacity = 0.5;
 
+    const variantColorsRGB = {
+      default: [32, 68, 152],
+      album: [228, 9, 9],
+    };
+
+    function updateHeaderBackground(scrollY) {
+      const isScrolled = scrollY > transparencyThreshold;
+
+      const baseColor = variantColorsRGB[styleVariant];
+      if (!baseColor) return;
+
+      const alpha = isScrolled ? backgroundOpacity : 1;
+      header.style.backgroundColor = `rgba(${baseColor.join(", ")}, ${alpha})`;
+
+      // if (navRight) navRight.style.backgroundColor = rgba;
+
+      // if (hamburgerBtn) hamburgerBtn.style.backgroundColor = rgba;
+    }
+    updateHeaderBackground(window.scrollY);
+
+    // Scroll listener to update both transform and background
     window.addEventListener("scroll", () => {
       const currentScrollY = window.scrollY;
       const delta = currentScrollY - lastScrollY;
 
-      // Invert the delta: scroll down = header moves up, scroll up = header moves down
       currentOffset -= delta * scrollEffectStrength;
-
-      // Clamp between fully visible (0) and fully hidden (-maxHideOffset)
       currentOffset = Math.max(Math.min(currentOffset, 0), -maxHideOffset);
+      header.style.transform = `translateY(${currentOffset}px)`;
 
-      gsap.set(header, { y: currentOffset });
+      updateHeaderBackground(currentScrollY);
 
       lastScrollY = currentScrollY;
     });
   });
 </script>
 
-<!-- The full structure from layout.astro, with bind:this and event hooks added -->
 <header class="site-header {styleVariant}" bind:this={header}>
   <nav class="navbar">
     <!-- Left aligned section -->
@@ -77,15 +97,15 @@
 
     <!-- Right aligned section -->
     <div class="nav-right" id="navLinks" bind:this={navLinks}>
-      <a href="/music">music</a>
+      <a href="/music">Music</a>
       <span class="separator"></span>
-      <a href="/gallery">gallery</a>
+      <a href="/gallery">Gallery</a>
       <span class="separator"></span>
-      <a href="/merch">merch</a>
+      <a href="/merch">Merch</a>
       <span class="separator"></span>
-      <a href="/about">about</a>
+      <a href="/about">About</a>
       <span class="separator"></span>
-      <a href="/contact-us">contact us</a>
+      <a href="/contact-us">Contact us</a>
     </div>
   </nav>
 </header>
@@ -98,23 +118,30 @@
     width: 100%;
     z-index: 999;
     will-change: transform;
-    backdrop-filter: blur(4px) saturate(150%);
+    backdrop-filter: blur(5px) invert(80%);
+    transition: background-color 0.4s ease;
   }
 
   /* Default variant */
   .site-header.default {
-    background-color: rgba(27, 75, 217, 0.695);
+    background-color: rgb(32, 61, 151, 1);
   }
   .site-header.default a {
     color: white;
+    font-family: "Zen Maru Gothic", sans-serif;
+    font-weight: 700;
+    font-style: normal;
   }
 
   /* Album variant */
   .site-header.album {
-    background-color: rgba(228, 9, 9, 0.5);
+    background-color: rgba(228, 9, 9, 1);
   }
   .site-header.album a {
     color: white;
+    font-family: "Zen Maru Gothic", sans-serif;
+    font-weight: 700;
+    font-style: normal;
   }
 
   .navbar {
@@ -173,7 +200,7 @@
       top: 100%;
       left: 0;
       width: 100%;
-      background-color: rgb(170, 220, 196);
+      background-color: rgb(16, 43, 82);
       text-align: center;
     }
 
