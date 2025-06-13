@@ -1,13 +1,11 @@
 <footer>
   <div class="footer-text">
-    <p style="font-size:1.5rem; font-weight: 500; padding-bottom: 0.5rem;">
-      Ragapuspa
-    </p>
-    <p style="padding-bottom: 0.5rem;">Copyright © 2025 Ragapuspa</p>
+    <p>Copyright © 2025 Ragapuspa</p>
     <p>
       All original sources of derivative works based on Touhou Project belongs
       to Jun'ya Ota (ZUN) and Team Shanghai Alice.
     </p>
+    <p style="font-size:0.7rem; padding-top: 2rem;">Website made by Ryhun using Astro framework.</p>
   </div>
 </footer>
 
@@ -18,20 +16,21 @@
     background-position: center;
     background-repeat: no-repeat;
     color: white;
-    height: 150px;
-    width: 100vw;
-    padding: 0%;
+
+    width: 100%;
+    min-height: 100px;
+    padding: 1rem;
 
     display: flex;
-    justify-content: left;
-    align-items: left;
+    justify-content: flex-start;
+    align-items: flex-start;
     text-align: left;
 
     position: relative;
-    overflow: hidden; /* Ensure pseudo-element doesn't spill out */
+    overflow: hidden;
+    box-sizing: border-box;
   }
 
-  /* Pseudo-element overlay for darkening or filtering */
   footer::before {
     content: "";
     position: absolute;
@@ -43,6 +42,10 @@
 
   .footer-text {
     position: relative;
-    padding: 2rem;
+    z-index: 1;
+  }
+
+  p {
+    padding: 0.2rem;
   }
 </style>
