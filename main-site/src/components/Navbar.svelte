@@ -164,6 +164,7 @@
 
   /* Hamburger icon default hidden on large screens */
   .hamburger-menu {
+    color: white;
     display: none;
     font-size: 1.5rem;
     background: none;
