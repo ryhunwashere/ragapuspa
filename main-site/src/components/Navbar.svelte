@@ -34,11 +34,6 @@
   }
 
   onMount(() => {
-    const maxHideOffset = header.offsetHeight;
-    let lastScrollY = window.scrollY;
-    let currentOffset = 0;
-
-    const scrollEffectStrength = 0.4;
     const transparencyThreshold = 4;
     const backgroundOpacity = 0.5;
 
@@ -55,25 +50,13 @@
 
       const alpha = isScrolled ? backgroundOpacity : 1;
       header.style.backgroundColor = `rgba(${baseColor.join(", ")}, ${alpha})`;
-
-      // if (navRight) navRight.style.backgroundColor = rgba;
-
-      // if (hamburgerBtn) hamburgerBtn.style.backgroundColor = rgba;
     }
     updateHeaderBackground(window.scrollY);
 
     // Scroll listener to update both transform and background
     window.addEventListener("scroll", () => {
       const currentScrollY = window.scrollY;
-      const delta = currentScrollY - lastScrollY;
-
-      currentOffset -= delta * scrollEffectStrength;
-      currentOffset = Math.max(Math.min(currentOffset, 0), -maxHideOffset);
-      header.style.transform = `translateY(${currentOffset}px)`;
-
       updateHeaderBackground(currentScrollY);
-
-      lastScrollY = currentScrollY;
     });
   });
 </script>
@@ -200,7 +183,7 @@
       top: 100%;
       left: 0;
       width: 100%;
-      background-color: rgb(16, 43, 82);
+      background-color: rgba(16, 43, 82, 0.95); 
       text-align: center;
     }
 
