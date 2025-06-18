@@ -18,8 +18,8 @@ export async function fetchCloudinaryUrls(folder, type) {
 
     return allResources.map((item) => ({
       url: item.secure_url,
-      public_id: item.public_id,
-      uploaded_at: item.uploaded_at,
+      publicId: item.public_id,
+      uploadedAt: item.uploaded_at,
     }));
   } catch (err) {
     console.error(`❌ Failed to fetch from Cloudinary folder "${folder}":`, err);

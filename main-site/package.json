@@ -3,7 +3,7 @@
   "type": "module",
   "version": "0.0.1",
   "scripts": {
-    "generate-gallery": "node src/scripts/generateGalleryIndex.js",
+    "generate-gallery": "node src/scripts/generateGalleryItems.js",
     "generate-music": "node src/scripts/generateMusicItems.js",
     "build": "npm run generate-gallery && npm run generate-music && astro build",
     "dev": "astro dev",

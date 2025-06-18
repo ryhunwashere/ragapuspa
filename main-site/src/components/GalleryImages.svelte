@@ -1,20 +1,20 @@
 <script>
   export let urls = [];
 
-  const width = "600";
-  const format = "webp";
-  const quality = "auto:low";
+  const WIDTH = "500";
+  const FORMAT = "webp";
+  const QUALITY = "auto:low";
 
   function transform(url) {
-    return url.replace(`/upload/`, `/upload/w_${width},f_${format},q_${quality}/`);
+    return url.replace(`/upload/`, `/upload/w_${WIDTH},f_${FORMAT},q_${QUALITY}/`);
   }
 </script>
 
 <div class="gallery">
-  {#each urls as { url, public_id }, i}
+  {#each urls as { imageUrl, imagePublicId }, i}
     <img
-      src={transform(url)}
-      alt={public_id}
+      src={transform(imageUrl)}
+      alt={imagePublicId}
       loading="lazy"
       class="fade-in"
       style="animation-delay: {i * 30}ms"
