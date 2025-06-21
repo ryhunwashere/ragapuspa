@@ -1,0 +1,99 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Wheel from "../components/music_page/Wheel.svelte";
+import cards from "../data/cards.json";
+import { onMount } from "svelte";
+import { writable } from "svelte/store";
+
+const selectedIndex = writable(0); // shared selection
+
+const title = "Music Page";
+---
+
+<BaseLayout title={title}>
+  <section class="music-selector">
+    <div class="left-container">
+      <h2 class="release-title">A Song Title</h2>
+      <p class="description">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+        veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+        commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
+        velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
+        occaecat cupidatat non proident, sunt in culpa qui officia deserunt
+        mollit anim id est laborum.
+      </p>
+      <ul class="credits">
+        <li>Album:</li>
+        <li>Arranger:</li>
+        <li>Original:</li>
+        <li>Artwork:</li>
+      </ul>
+      <div class="hyperlinks"></div>
+    </div>
+
+    <div class="right-container">
+      <Wheel client:load cards={cards} />
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .music-selector {
+    background-image: url("https://res.cloudinary.com/djow2j0qk/image/upload/v1749647241/baum_shizuha_ym4d4z.jpg");
+    position: relative;
+    background-color: rgb(54, 54, 54);
+    outline: auto;
+    width: 100%;
+    height: 100vh;
+  }
+
+  .right-container {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 40%;
+    height: 100%;
+    overflow: hidden;
+    background: blueviolet;
+  }
+
+  .scroll-area {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+  }
+
+  .left-container {
+    padding-left: 50px;
+    padding-top: 30px;
+    position: absolute;
+    left: 0;
+    height: 100%;
+    width: 50%;
+    color: aliceblue;
+    background: #000000;
+    background: linear-gradient(
+      90deg,
+      rgba(0, 0, 0, 0.7) 30%,
+      rgba(255, 255, 255, 0) 100%
+    );
+  }
+
+  .release-title {
+    font-size: 70px;
+    letter-spacing: -4px;
+  }
+
+  .description {
+    padding-top: 50px;
+    padding-right: 20%;
+  }
+
+  .credits {
+    list-style: none;
+    padding-top: 50px;
+    margin-bottom: auto;
+  }
+</style>

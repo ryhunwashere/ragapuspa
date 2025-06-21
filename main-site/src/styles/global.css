@@ -14,13 +14,17 @@ h1 {
 }
 
 h2 {
-  font-weight: 500;
+  font-weight: 700;
   font-style: normal;
   padding-bottom: 0.5rem;
 }
 
 h3 {
   padding-bottom: 0.5rem;
+}
+
+p {
+  font-size: 20px;
 }
 
 .main {
