@@ -1,6 +1,12 @@
 ---
+// Layout
 import BaseLayout from "../layouts/BaseLayout.astro";
+
+// Components
 import Wheel from "../components/music_page/Wheel.svelte";
+import BackgroudImage from "../components/music_page/BackgroundImage.svelte"
+
+// Music wheel items
 import cards from "../data/cards.json";
 
 const title = "Music Page";
@@ -8,9 +14,7 @@ const title = "Music Page";
 
 <BaseLayout title={title}>
   <section class="music-selector">
-    <img
-      src="https://res.cloudinary.com/djow2j0qk/image/upload/w_1920,f_webp,q_auto:eco/v1749816121/hd_baum_nareko_wfc1cx.png"
-    />
+    <BackgroudImage client:idle />
     <div class="left-container">
       <h2 class="release-title">A Song Title</h2>
       <p class="description">
@@ -31,7 +35,7 @@ const title = "Music Page";
       <div class="hyperlinks"></div>
     </div>
 
-    <Wheel client:load cards={cards} />
+    <Wheel client:idle cards={cards} />
 
   </section>
 </BaseLayout>
@@ -53,21 +57,6 @@ const title = "Music Page";
 
   .description {
     font-size: clamp(1rem, 1.25vw, 3rem);
-  }
-
-  .music-selector img {
-    position: absolute;
-    z-index: 0;
-    object-fit: cover;
-    object-position: top;
-    min-width: 100%;
-    min-height: 100%;
-    width: auto;
-    height: auto;
-
-    /* Force scaling beyond native resolution */
-    image-rendering: -webkit-optimize-contrast;
-    image-rendering: crisp-edges;
   }
 
   .left-container {

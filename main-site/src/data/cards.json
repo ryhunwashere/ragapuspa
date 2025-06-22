@@ -1,11 +1,23 @@
 [
   {
-    "title": "Romantic Colours",
+    "title": "Egyptian Gods",
     "imageUrl": "https://res.cloudinary.com/djow2j0qk/image/upload/f_webp,q_auto:low/v1749647239/baum_nareko_z4ocpr.jpg",
     "audioUrl": ""
   },
-  { "title": "Secret God Matara", "imageUrl": "", "audioUrl": "" },
-  { "title": "This is a Title", "imageUrl": "", "audioUrl": "" },
-  { "title": "Song Title", "imageUrl": "", "audioUrl": "" },
+  {
+    "title": "Romantic Colours",
+    "imageUrl": "https://res.cloudinary.com/djow2j0qk/image/upload/f_webp,q_auto:low/v1749647241/baum_shizuha_ym4d4z.jpg",
+    "audioUrl": "https://res.cloudinary.com/djow2j0qk/video/upload/v1750064262/RGPS-0001%7CBinaryWorlds%7C04%7CRomanticColours%7C2025-05-30%7Csingle.ogg"
+  },
+  {
+    "title": "Wheelchair Song",
+    "imageUrl": "https://res.cloudinary.com/djow2j0qk/image/upload/f_webp,q_auto:low/v1749647241/baum_shizuha_ym4d4z.jpg",
+    "audioUrl": "https://res.cloudinary.com/djow2j0qk/video/upload/v1750172758/RGPS-0001%7CBinaryWorlds%7C01%7CWheelChairSong%7C2025-08-01%7Calbum.mp3"
+  },
+  {
+    "title": "Song Title",
+    "imageUrl": "https://res.cloudinary.com/djow2j0qk/image/upload/f_webp,q_auto:low/v1749647239/baum_nareko_z4ocpr.jpg",
+    "audioUrl": "https://res.cloudinary.com/djow2j0qk/video/upload/v1750230136/RGPS-0002%7CBeyondtheWorlds%7C01%7CSecretGod%7C2025-10-06%7Calbum.mp3"
+  },
   { "title": "This is last song", "imageUrl": "", "audioUrl": "" }
 ]

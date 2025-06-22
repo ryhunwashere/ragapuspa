@@ -1,6 +1,7 @@
 <script>
   import { gsap } from "gsap";
   import { onMount } from "svelte";
+  import { selectedCard } from "../../stores/selectedCard.js"; // svelte store
 
   export let cards = [];
 
@@ -10,13 +11,12 @@
   onMount(() => {
     if (firstCardEl) {
       selectedCardEl = firstCardEl;
-      gsap.set(selectedCardEl, {
-        width: "100%",
-      });
+      gsap.set(selectedCardEl, { width: "100%" });
+      selectedCard.set(cards[0]);
     }
   });
 
-  function handleMouseClick(event) {
+  function handleMouseClick(event, cardData) {
     const clickedCard = event.currentTarget;
 
     if (selectedCardEl && selectedCardEl !== clickedCard) {
@@ -34,7 +34,10 @@
       duration: 0.3,
       ease: "power2.inOut",
     });
+
+    selectedCard.set(cardData);
   }
+
   function handleMouseEnter(event) {
     const cardEl = event.currentTarget;
 
@@ -69,7 +72,7 @@
       <button
         class="card"
         bind:this={firstCardEl}
-        onclick={handleMouseClick}
+        onclick={(e) => handleMouseClick(e, cards[0])}
         onmouseenter={handleMouseEnter}
         onmouseleave={handleMouseLeave}
       >
@@ -81,15 +84,15 @@
     {#each cards.slice(1) as card}
       <button
         class="card"
-        onclick={handleMouseClick}
+        onclick={(e) => handleMouseClick(e, card)}
         onmouseenter={handleMouseEnter}
         onmouseleave={handleMouseLeave}
       >
         {card.title}
       </button>
     {/each}
+
     <div style="height:40vh"></div>
-    
   </div>
 </div>
 
@@ -118,6 +121,7 @@
   }
 
   .card {
+    cursor: pointer;
     width: 80%;
     background-color: rgb(255, 255, 255);
     height: 20vh;
