@@ -2,16 +2,15 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Wheel from "../components/music_page/Wheel.svelte";
 import cards from "../data/cards.json";
-import { onMount } from "svelte";
-import { writable } from "svelte/store";
-
-const selectedIndex = writable(0); // shared selection
 
 const title = "Music Page";
 ---
 
 <BaseLayout title={title}>
   <section class="music-selector">
+    <img
+      src="https://res.cloudinary.com/djow2j0qk/image/upload/w_1920,f_webp,q_auto:eco/v1749816121/hd_baum_nareko_wfc1cx.png"
+    />
     <div class="left-container">
       <h2 class="release-title">A Song Title</h2>
       <p class="description">
@@ -32,42 +31,48 @@ const title = "Music Page";
       <div class="hyperlinks"></div>
     </div>
 
-    <div class="right-container">
-      <Wheel client:load cards={cards} />
-    </div>
+    <Wheel client:load cards={cards} />
+
   </section>
 </BaseLayout>
 
 <style>
   .music-selector {
-    background-image: url("https://res.cloudinary.com/djow2j0qk/image/upload/v1749647241/baum_shizuha_ym4d4z.jpg");
+    font-size: clamp(2rem, 2rem, 8rem);
     position: relative;
     background-color: rgb(54, 54, 54);
     outline: auto;
-    width: 100%;
+    width: 100vw;
     height: 100vh;
+    overflow: hidden;
   }
 
-  .right-container {
+  .release-title {
+    font-size: clamp(3rem, 1.25vw, 8rem);
+  }
+
+  .description {
+    font-size: clamp(1rem, 1.25vw, 3rem);
+  }
+
+  .music-selector img {
     position: absolute;
-    right: 0;
-    top: 0;
-    width: 40%;
-    height: 100%;
-    overflow: hidden;
-    background: blueviolet;
-  }
+    z-index: 0;
+    object-fit: cover;
+    object-position: top;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
 
-  .scroll-area {
-    position: relative;
-    height: 100%;
-    width: 100%;
-    overflow: hidden;
+    /* Force scaling beyond native resolution */
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
   }
 
   .left-container {
-    padding-left: 50px;
-    padding-top: 30px;
+    padding-left: 2%;
+    padding-top: 2%;
     position: absolute;
     left: 0;
     height: 100%;
@@ -76,7 +81,7 @@ const title = "Music Page";
     background: #000000;
     background: linear-gradient(
       90deg,
-      rgba(0, 0, 0, 0.7) 30%,
+      rgba(0, 0, 0, 0.7) 50%,
       rgba(255, 255, 255, 0) 100%
     );
   }

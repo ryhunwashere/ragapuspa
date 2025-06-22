@@ -1,75 +1,113 @@
 <script>
-  import { onMount } from "svelte";
   import { gsap } from "gsap";
-  import Draggable from "gsap/Draggable";
-  import InertiaPlugin from "gsap/InertiaPlugin";
+  import { onMount } from "svelte";
 
   export let cards = [];
 
-  let wheelEl;
+  let selectedCardEl;
+  let firstCardEl;
 
   onMount(() => {
-    gsap.registerPlugin(Draggable, InertiaPlugin);
-
-    Draggable.create(wheelEl, {
-      type: "y",
-      inertia: true,
-      edgeResistance: 0.75,
-
-      bounds: () => {
-        const parentHeight = wheelEl.parentElement.clientHeight;
-        const contentHeight = wheelEl.scrollHeight;
-        const scrollable = contentHeight - parentHeight;
-
-        return {
-          minY: scrollable > 0 ? -scrollable : 0,
-          maxY: 0,
-        };
-      },
-
-      onDrag: function () {
-        gsap.set(wheelEl, { y: this.y });
-      },
-      onThrowUpdate: function () {
-        gsap.set(wheelEl, { y: this.y });
-      },
-      onThrowComplete: function () {
-        // Clamp the value if it went too far
-        const bounds = this.vars.bounds();
-        if (this.y < bounds.minY) {
-          this.endDrag();
-          gsap.to(wheelEl, {
-            y: bounds.minY,
-            duration: 0.3,
-            ease: "power2.out",
-          });
-        } else if (this.y > bounds.maxY) {
-          this.endDrag();
-          gsap.to(wheelEl, {
-            y: bounds.maxY,
-            duration: 0.3,
-            ease: "power2.out",
-          });
-        }
-      },
-    });
+    if (firstCardEl) {
+      selectedCardEl = firstCardEl;
+      gsap.set(selectedCardEl, {
+        width: "100%",
+      });
+    }
   });
+
+  function handleMouseClick(event) {
+    const clickedCard = event.currentTarget;
+
+    if (selectedCardEl && selectedCardEl !== clickedCard) {
+      gsap.to(selectedCardEl, {
+        width: "80%",
+        duration: 0.3,
+        ease: "power2.inOut",
+      });
+    }
+
+    selectedCardEl = clickedCard;
+
+    gsap.to(selectedCardEl, {
+      width: "100%",
+      duration: 0.3,
+      ease: "power2.inOut",
+    });
+  }
+  function handleMouseEnter(event) {
+    const cardEl = event.currentTarget;
+
+    if (cardEl === selectedCardEl) return;
+
+    gsap.to(cardEl, {
+      width: "90%",
+      duration: 0.3,
+      ease: "power2.inOut",
+    });
+  }
+
+  function handleMouseLeave(event) {
+    const cardEl = event.currentTarget;
+
+    if (cardEl === selectedCardEl) return;
+
+    gsap.to(cardEl, {
+      width: "80%",
+      duration: 0.3,
+      ease: "power2.inOut",
+    });
+  }
 </script>
 
-<div class="wheel" bind:this={wheelEl}>
-  <div style="height:40vh"></div>
-  {#each cards as card}
-    <div class="card">{card.title}</div>
-  {/each}
-  <div style="height:40vh"></div>
+<div class="right-container">
+  <div class="wheel">
+    <div style="height:40vh"></div>
+
+    <!-- Only the first card gets bind:this -->
+    {#if cards.length > 0}
+      <button
+        class="card"
+        bind:this={firstCardEl}
+        onclick={handleMouseClick}
+        onmouseenter={handleMouseEnter}
+        onmouseleave={handleMouseLeave}
+      >
+        {cards[0].title}
+      </button>
+    {/if}
+
+    <!-- All remaining cards, no bind:this -->
+    {#each cards.slice(1) as card}
+      <button
+        class="card"
+        onclick={handleMouseClick}
+        onmouseenter={handleMouseEnter}
+        onmouseleave={handleMouseLeave}
+      >
+        {card.title}
+      </button>
+    {/each}
+    <div style="height:40vh"></div>
+    
+  </div>
 </div>
 
 <style>
+  .right-container {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 42%;
+    height: 100%;
+    padding-left: 50px;
+    overflow-y: scroll;
+  }
+
   .wheel {
     display: flex;
     flex-direction: column;
     align-items: flex-end;
-    gap: 10px;
 
     width: 100%;
     position: relative;
@@ -77,19 +115,18 @@
     will-change: transform;
     touch-action: none;
     user-select: none;
-    cursor: grab;
   }
 
   .card {
-    width: 100%;
-    background-color: azure;
-    height: 140px;
+    width: 80%;
+    background-color: rgb(255, 255, 255);
+    height: 20vh;
     padding: 10px;
     text-align: left;
 
     border-top-left-radius: 10px;
     border-bottom-left-radius: 10px;
 
-    box-shadow: 0px 0px 20px rgb(0, 0, 0);
+    box-shadow: 0px 0px 50px rgb(0, 0, 0, 0.8);
   }
 </style>
