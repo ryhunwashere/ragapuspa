@@ -10,6 +10,7 @@
       transition:fade={{ duration: 300 }}
       alt="Background"
       src={currentCard.imageUrl}
+      loading="lazy"
     />
   {/key}
 {/if}

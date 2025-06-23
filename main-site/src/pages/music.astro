@@ -1,15 +1,14 @@
 ---
-// Layout
 import BaseLayout from "../layouts/BaseLayout.astro";
 
-// Components
 import Wheel from "../components/music_page/Wheel.svelte";
-import BackgroudImage from "../components/music_page/BackgroundImage.svelte"
+import BackgroudImage from "../components/music_page/BackgroundImage.svelte";
+import PlaybackButton from "../components/music_page/PlaybackButton.svelte";
+import AudioPlayer from "../components/music_page/AudioPlayer.svelte";
 
-// Music wheel items
 import cards from "../data/cards.json";
 
-const title = "Music Page";
+const title = "Music";
 ---
 
 <BaseLayout title={title}>
@@ -35,54 +34,68 @@ const title = "Music Page";
       <div class="hyperlinks"></div>
     </div>
 
-    <Wheel client:idle cards={cards} />
+    <div class="playback-container">
+      <PlaybackButton client:visible />
+    </div>
 
+    <div class="right-container">
+      <Wheel client:idle cards={cards} />
+      <AudioPlayer client:idle />
+    </div>
   </section>
 </BaseLayout>
 
 <style>
   .music-selector {
-    font-size: clamp(2rem, 2rem, 8rem);
     position: relative;
-    background-color: rgb(54, 54, 54);
-    outline: auto;
-    width: 100vw;
+    display: flex;
+    width: 100%;
     height: 100vh;
     overflow: hidden;
-  }
-
-  .release-title {
-    font-size: clamp(3rem, 1.25vw, 8rem);
-  }
-
-  .description {
-    font-size: clamp(1rem, 1.25vw, 3rem);
+    background-color: rgb(54, 54, 54);
   }
 
   .left-container {
-    padding-left: 2%;
-    padding-top: 2%;
-    position: absolute;
-    left: 0;
-    height: 100%;
-    width: 50%;
-    color: aliceblue;
-    background: #000000;
+    color: white;
+    position: relative;
+    width: 70%;
+    padding: 2%;
+    background: black;
     background: linear-gradient(
       90deg,
-      rgba(0, 0, 0, 0.7) 50%,
+      rgba(0, 0, 0, 0.6) 50%,
       rgba(255, 255, 255, 0) 100%
     );
   }
 
+  .playback-container {
+    z-index: 1;
+    width: 40vw;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+  }
+
+  .right-container {
+    position: relative;
+    width: 60vw;
+    right: 0px;
+    height: 100%;
+    overflow-y: scroll;
+    padding-left: 1rem;
+  }
+
   .release-title {
+    padding-top: 5%;
     font-size: 70px;
     letter-spacing: -4px;
+    font-size: clamp(3rem, 1.25vw, 8rem);
   }
 
   .description {
-    padding-top: 50px;
+    padding-top: 10%;
     padding-right: 20%;
+    font-size: clamp(1rem, 1.25vw, 3rem);
   }
 
   .credits {

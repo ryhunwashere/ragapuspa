@@ -1,6 +1,6 @@
 <script>
   import { gsap } from "gsap";
-  import { selectedCard } from "../../stores/selectedCard.js";
+  import { selectedCard, isPlaying } from "../../stores/selectedCard.js";
   import { onMount } from "svelte";
 
   export let cards = [];
@@ -11,6 +11,7 @@
   onMount(() => {
     if (cards.length > 0) {
       handleMouseClick(cards[0], 0);
+      isPlaying.set(false);
     }
   });
 
@@ -25,6 +26,13 @@
 
     selectedIndex = index;
     selectedCard.set(card);
+
+    cardElements[index]?.scrollIntoView({
+      block: "center",
+      behavior: "smooth",
+    });
+
+    isPlaying.set(true);
   }
 
   function handleMouseEnter(index) {
@@ -46,39 +54,45 @@
       ease: "power2.inOut",
     });
   }
+
+  // Keyboard controls
+  function handleKeydown(event) {
+    if (event.key === "ArrowDown") {
+      event.preventDefault();
+      if (selectedIndex < cards.length - 1) {
+        handleMouseClick(cards[selectedIndex + 1], selectedIndex + 1);
+      }
+    } else if (event.key === "ArrowUp") {
+      event.preventDefault();
+      if (selectedIndex > 0) {
+        handleMouseClick(cards[selectedIndex - 1], selectedIndex - 1);
+      }
+    }
+  }
 </script>
 
-<div class="right-container">
-  <div class="wheel">
-    <div style="height:40vh"></div>
+<div class="wheel">
+  <div style="height:40vh"></div>
 
-    {#each cards as card, i}
-      <button
-        class="card"
-        bind:this={cardElements[i]}
-        onclick={() => handleMouseClick(card, i)}
-        onmouseenter={() => handleMouseEnter(i)}
-        onmouseleave={() => handleMouseLeave(i)}
-      >
-        {card.title}
-      </button>
-    {/each}
+  {#each cards as card, i}
+    <div
+      role="button"
+      class="card"
+      bind:this={cardElements[i]}
+      tabindex="-1"
+      onkeydown={handleKeydown}
+      onclick={() => handleMouseClick(card, i)}
+      onmouseenter={() => handleMouseEnter(i)}
+      onmouseleave={() => handleMouseLeave(i)}
+    >
+      {card.title}
+    </div>
+  {/each}
 
-    <div style="height:40vh"></div>
-  </div>
+  <div style="height:40vh"></div>
 </div>
 
 <style>
-  .right-container {
-    position: absolute;
-    right: 0;
-    top: 0;
-    width: 42%;
-    height: 100%;
-    padding-left: 50px;
-    overflow-y: scroll;
-  }
-
   .wheel {
     display: flex;
     flex-direction: column;
@@ -94,15 +108,16 @@
 
   .card {
     cursor: pointer;
+    height: 100%;
     width: 80%;
-    background-color: rgb(255, 255, 255);
+    background-color: white;
     height: 20vh;
-    padding: 10px;
+    padding: 2%;
     text-align: left;
 
     border-top-left-radius: 10px;
     border-bottom-left-radius: 10px;
 
-    box-shadow: 0px 0px 50px rgb(0, 0, 0, 0.8);
+    box-shadow: 0px 0px 10px rgb(0, 0, 0, 0.8);
   }
 </style>
