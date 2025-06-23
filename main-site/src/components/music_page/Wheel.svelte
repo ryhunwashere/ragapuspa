@@ -1,61 +1,46 @@
 <script>
   import { gsap } from "gsap";
+  import { selectedCard } from "../../stores/selectedCard.js";
   import { onMount } from "svelte";
-  import { selectedCard } from "../../stores/selectedCard.js"; // svelte store
 
   export let cards = [];
 
-  let selectedCardEl;
-  let firstCardEl;
+  let cardElements = [];
+  let selectedIndex;
 
   onMount(() => {
-    if (firstCardEl) {
-      selectedCardEl = firstCardEl;
-      gsap.set(selectedCardEl, { width: "100%" });
-      selectedCard.set(cards[0]);
+    if (cards.length > 0) {
+      handleMouseClick(cards[0], 0);
     }
   });
 
-  function handleMouseClick(event, cardData) {
-    const clickedCard = event.currentTarget;
-
-    if (selectedCardEl && selectedCardEl !== clickedCard) {
-      gsap.to(selectedCardEl, {
-        width: "80%",
+  function handleMouseClick(card, index) {
+    for (let i = 0; i < cardElements.length; i++) {
+      gsap.to(cardElements[i], {
+        width: i === index ? "100%" : "80%",
         duration: 0.3,
         ease: "power2.inOut",
       });
     }
 
-    selectedCardEl = clickedCard;
-
-    gsap.to(selectedCardEl, {
-      width: "100%",
-      duration: 0.3,
-      ease: "power2.inOut",
-    });
-
-    selectedCard.set(cardData);
+    selectedIndex = index;
+    selectedCard.set(card);
   }
 
-  function handleMouseEnter(event) {
-    const cardEl = event.currentTarget;
+  function handleMouseEnter(index) {
+    if (index === selectedIndex) return;
 
-    if (cardEl === selectedCardEl) return;
-
-    gsap.to(cardEl, {
+    gsap.to(cardElements[index], {
       width: "90%",
       duration: 0.3,
       ease: "power2.inOut",
     });
   }
 
-  function handleMouseLeave(event) {
-    const cardEl = event.currentTarget;
+  function handleMouseLeave(index) {
+    if (index === selectedIndex) return;
 
-    if (cardEl === selectedCardEl) return;
-
-    gsap.to(cardEl, {
+    gsap.to(cardElements[index], {
       width: "80%",
       duration: 0.3,
       ease: "power2.inOut",
@@ -67,26 +52,13 @@
   <div class="wheel">
     <div style="height:40vh"></div>
 
-    <!-- Only the first card gets bind:this -->
-    {#if cards.length > 0}
+    {#each cards as card, i}
       <button
         class="card"
-        bind:this={firstCardEl}
-        onclick={(e) => handleMouseClick(e, cards[0])}
-        onmouseenter={handleMouseEnter}
-        onmouseleave={handleMouseLeave}
-      >
-        {cards[0].title}
-      </button>
-    {/if}
-
-    <!-- All remaining cards, no bind:this -->
-    {#each cards.slice(1) as card}
-      <button
-        class="card"
-        onclick={(e) => handleMouseClick(e, card)}
-        onmouseenter={handleMouseEnter}
-        onmouseleave={handleMouseLeave}
+        bind:this={cardElements[i]}
+        onclick={() => handleMouseClick(card, i)}
+        onmouseenter={() => handleMouseEnter(i)}
+        onmouseleave={() => handleMouseLeave(i)}
       >
         {card.title}
       </button>
