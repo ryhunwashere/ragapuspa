@@ -1,14 +1,12 @@
-<script>
+<script lang="ts">
   import { isPlaying } from "../../stores/selectedCard";
 
   function handleMouseClick() {
-    isPlaying.update((v) => !v);
+    isPlaying.update((playing) => !playing);
     console.log("Audio status: ", isPlaying);
   }
 
-  $: iconSrc = $isPlaying
-    ? "/icons/pause-button.svg"
-    : "/icons/play-button.svg";
+  $: iconSrc = $isPlaying ? "/icons/pause-button.svg" : "/icons/play-button.svg";
   $: iconAlt = $isPlaying ? "Pause" : "Play";
 </script>
 

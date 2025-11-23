@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import { selectedCard } from "../../stores/selectedCard.js";
   import { fade } from "svelte/transition";
   $: currentCard = $selectedCard;

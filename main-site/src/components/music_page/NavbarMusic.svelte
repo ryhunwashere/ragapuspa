@@ -2,20 +2,19 @@
   import { onMount } from "svelte";
   import gsap from "gsap";
 
-  type RGBColor = [number, number, number];
+  export let styleVariant = "default";
+  let isMenuOpen: boolean = false;
 
-  export let styleVariant: string = "default";
-  let isMenuOpen = false;
-
-  let header: any;
-  let navLinks: object;
+  let headerEl: HTMLElement;
+  let navLinksEl: HTMLDivElement;
   let hamburgerBtn;
+  let navRight;
 
   function toggleMenu() {
     isMenuOpen = !isMenuOpen;
 
     if (isMenuOpen) {
-      gsap.to(navLinks, {
+      gsap.to(navLinksEl, {
         duration: 0.3,
         scaleY: 1,
         opacity: 1,
@@ -24,7 +23,7 @@
         ease: "power2.out",
       });
     } else {
-      gsap.to(navLinks, {
+      gsap.to(navLinksEl, {
         duration: 0.3,
         scaleY: 0,
         opacity: 0,
@@ -34,45 +33,29 @@
     }
   }
 
-  function clampRGB(value: number): number {
-    return Math.min(255, Math.max(0, Math.round(value)));
-  }
-
   onMount(() => {
-    const transparencyThreshold: number = 4;
-    const backgroundOpacity: number = 0.5;
+    const transparencyThreshold = 4;
+    const backgroundOpacity = 0.5;
 
-    const variantColorsRGB = new Map<string, RGBColor>([
-      ["default", [32, 68, 152]],
-      ["album", [228, 9, 9]]
-    ]);
+    const BASE_COLOR = [228, 9, 9];
 
     function updateHeaderBackground(scrollY: number) {
       const isScrolled = scrollY > transparencyThreshold;
 
-      const baseColor = variantColorsRGB.get(styleVariant);
-      if (!baseColor) {
-        console.warn(`Unknown base color type for navbar: ${styleVariant}`);
-        return;
-      }
-
-      const normalizedColors = baseColor.map(clampRGB);
-
       const alpha = isScrolled ? backgroundOpacity : 1;
-      header.style.backgroundColor = `rgba(${normalizedColors.join(", ")}, ${alpha})`;
+      headerEl.style.backgroundColor = `rgba(${BASE_COLOR.join(", ")}, ${alpha})`;
     }
-    
     updateHeaderBackground(window.scrollY);
 
     // Scroll listener to update both transform and background
     window.addEventListener("scroll", () => {
-      const currentScrollY: number = window.scrollY;
+      const currentScrollY = window.scrollY;
       updateHeaderBackground(currentScrollY);
     });
   });
 </script>
 
-<header class="site-header {styleVariant}" bind:this={header}>
+<header class="site-header {styleVariant}" bind:this={headerEl}>
   <nav class="navbar">
     <!-- Left aligned section -->
     <div class="nav-left">
@@ -90,7 +73,7 @@
     </button>
 
     <!-- Right aligned section -->
-    <div class="nav-right" id="navLinks" bind:this={navLinks}>
+    <div class="nav-right" id="navLinks" bind:this={navLinksEl}>
       <a href="/music">Music</a>
       <span class="separator"></span>
       <a href="/gallery">Gallery</a>
@@ -195,7 +178,7 @@
       top: 100%;
       left: 0;
       width: 100%;
-      background-color: rgba(16, 43, 82, 0.95);
+      background-color: rgba(16, 43, 82, 0.95); 
       text-align: center;
     }
 

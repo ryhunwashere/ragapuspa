@@ -1,12 +1,12 @@
-<script>
+<script lang="ts">
   import { gsap } from "gsap";
-  import { selectedCard, isPlaying } from "../../stores/selectedCard.js";
+  import { selectedCard, isPlaying, type CardData } from "../../stores/selectedCard.ts";
   import { onMount } from "svelte";
 
-  export let cards = [];
+  export let cards: CardData[] = [];
 
-  let cardElements = [];
-  let selectedIndex;
+  let cardElements: HTMLDivElement[] = [];
+  let selectedIndex: number;
 
   onMount(() => {
     if (cards.length > 0) {
@@ -15,7 +15,7 @@
     }
   });
 
-  function handleMouseClick(card, index) {
+  function handleMouseClick(card: CardData, index: number) {
     for (let i = 0; i < cardElements.length; i++) {
       gsap.to(cardElements[i], {
         width: i === index ? "100%" : "80%",
@@ -35,7 +35,7 @@
     isPlaying.set(true);
   }
 
-  function handleMouseEnter(index) {
+  function handleMouseEnter(index: number) {
     if (index === selectedIndex) return;
 
     gsap.to(cardElements[index], {
@@ -45,7 +45,7 @@
     });
   }
 
-  function handleMouseLeave(index) {
+  function handleMouseLeave(index: number) {
     if (index === selectedIndex) return;
 
     gsap.to(cardElements[index], {
@@ -56,7 +56,7 @@
   }
 
   // Keyboard controls
-  function handleKeydown(event) {
+  function handleKeydown(event: KeyboardEvent) {
     if (event.key === "ArrowDown") {
       event.preventDefault();
       if (selectedIndex < cards.length - 1) {

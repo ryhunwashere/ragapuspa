@@ -1,5 +1,5 @@
 ---
-import BaseLayout from "../layouts/BaseLayout.astro";
+import MusicLayout from "../layouts/MusicLayout.astro";
 
 import Wheel from "../components/music_page/Wheel.svelte";
 import BackgroudImage from "../components/music_page/BackgroundImage.svelte";
@@ -7,11 +7,9 @@ import PlaybackButton from "../components/music_page/PlaybackButton.svelte";
 import AudioPlayer from "../components/music_page/AudioPlayer.svelte";
 
 import cards from "../data/cards.json";
-
-const title = "Music";
 ---
 
-<BaseLayout title={title}>
+<MusicLayout>
   <section class="music-selector">
     <BackgroudImage client:idle />
     <div class="left-container">
@@ -31,7 +29,13 @@ const title = "Music";
         <li>Original:</li>
         <li>Artwork:</li>
       </ul>
-      <div class="hyperlinks"></div>
+
+      <div class="hyperlinks">
+        <button class="hyperlink-button" aria-label="Bandcamp">
+          <img class="icon" src="/icons/bandcamp-logo.svg" />
+        </button>
+      </div>
+
     </div>
 
     <div class="playback-container">
@@ -43,9 +47,35 @@ const title = "Music";
       <AudioPlayer client:idle />
     </div>
   </section>
-</BaseLayout>
+</MusicLayout>
 
 <style>
+  .hyperlinks {
+    padding-top: 5%;
+  }
+
+  .hyperlink-button {
+    font-size: 0;
+    background-color: white;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 70%;
+  }
+
+  .hyperlink-button:hover {
+    cursor: pointer;
+    transform: scale(1.1);
+    transition: transform 0.2s ease;
+  }
+
+  .icon {
+    border-radius: 70%;
+    width: 50px;
+    height: 50px;
+  }
+
   .music-selector {
     position: relative;
     display: flex;
@@ -59,7 +89,8 @@ const title = "Music";
     color: white;
     position: relative;
     width: 70%;
-    padding: 2%;
+    padding-left: 4%;
+    padding-top: 0.5%;
     background: black;
     background: linear-gradient(
       90deg,
@@ -80,16 +111,20 @@ const title = "Music";
     position: relative;
     width: 60vw;
     right: 0px;
-    height: 100%;
     overflow-y: scroll;
     padding-left: 1rem;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .right-container::-webkit-scrollbar {
+    display: none;
   }
 
   .release-title {
     padding-top: 5%;
-    font-size: 70px;
     letter-spacing: -4px;
-    font-size: clamp(3rem, 1.25vw, 8rem);
+    font-size: clamp(4rem, 1.25vw, 8rem);
   }
 
   .description {

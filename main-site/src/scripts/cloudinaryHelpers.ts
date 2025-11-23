@@ -1,13 +1,13 @@
-import cloudinary from "./cloudinaryConfig.js";
+import cloudinary from "./cloudinaryConfig.ts";
 
-export async function fetchCloudinaryUrls(folder, type) {
+export async function fetchCloudinaryUrls(folderPath: string, type: string) {
   const allResources = [];
-  let nextCursor;
+  let nextCursor: string | undefined;
 
   try {
     do {
       const res = await cloudinary.search
-        .expression(`folder:${folder} AND resource_type:${type}`)
+        .expression(`folder:${folderPath} AND resource_type:${type}`)
         .max_results(100)
         .next_cursor(nextCursor)
         .execute();
@@ -22,7 +22,7 @@ export async function fetchCloudinaryUrls(folder, type) {
       uploadedAt: item.uploaded_at,
     }));
   } catch (err) {
-    console.error(`❌ Failed to fetch from Cloudinary folder "${folder}":`, err);
+    console.error(`❌ Failed to fetch from Cloudinary folder "${folderPath}":`, err);
     return [];
   }
 }

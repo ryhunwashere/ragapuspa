@@ -1,12 +1,19 @@
-<script>
+<script lang="ts">
   import { onMount } from "svelte";
-  export let initial = [];
 
-  let images = [...initial];
-  let chunkSize = 8;
-  let chunkIndex = 1;
-  let loading = false;
-  let isSmallScreen = false;
+  interface ImageItem {
+    imageUrlNormal: string;
+    imageUrlSmall: string;
+    imagePublicId: string;
+  }
+
+  export let initial: ImageItem[] = [];
+
+  let images: ImageItem[] = [...initial];
+  let chunkSize: number = 8;
+  let chunkIndex: number = 1;
+  let loading: boolean = false;
+  let isSmallScreen: boolean = false;
 
   // Check screen size once on mount
   onMount(() => {
@@ -31,7 +38,7 @@
     loading = false;
   }
 
-  function setupObserver(node) {
+  function setupObserver(node: Element) {
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -50,8 +57,8 @@
     };
   }
 
-  function handleLoad(e) {
-    const img = e.target;
+  function handleLoad(e: Event) {
+    const img = e.currentTarget as HTMLImageElement;
     img.classList.add("fade-in-loaded");
   }
 </script>
