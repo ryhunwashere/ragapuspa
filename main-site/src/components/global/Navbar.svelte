@@ -5,6 +5,11 @@
   type RGBColor = [number, number, number];
 
   export let styleVariant: string = "default";
+  const variantColorsRGB = new Map<string, RGBColor>([
+      ["default", [32, 68, 152]],
+      ["album", [228, 9, 9]]
+    ]);
+
   let isMenuOpen = false;
 
   let header: any;
@@ -41,11 +46,6 @@
   onMount(() => {
     const transparencyThreshold: number = 4;
     const backgroundOpacity: number = 0.5;
-
-    const variantColorsRGB = new Map<string, RGBColor>([
-      ["default", [32, 68, 152]],
-      ["album", [228, 9, 9]]
-    ]);
 
     function updateHeaderBackground(scrollY: number) {
       const isScrolled = scrollY > transparencyThreshold;

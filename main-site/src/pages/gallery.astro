@@ -1,8 +1,8 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-import GalleryImages from "../components/GalleryImages.svelte"
+import GalleryImages from "../components/gallery/GalleryImages.svelte"
 
-import allImages from "../data/gallery_items.json"; // Generated from "npm run build" or "npm run generate-gallery".
+import allImages from "../data/gallery_items.json";
 const initialChunk = allImages.slice(0, 8);
 
 const title = "Gallery";
