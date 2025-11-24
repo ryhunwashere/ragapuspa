@@ -1,7 +1,9 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-import GalleryImages from "../components/GalleryImages.svelte";
-import urls from "../data/gallery.json";
+import GalleryImages from "../components/gallery/GalleryImages.svelte"
+
+import allImages from "../data/gallery_items.json";
+const initialChunk = allImages.slice(0, 8);
 
 const title = "Gallery";
 ---
@@ -11,5 +13,5 @@ const title = "Gallery";
   <div class="gallery-title" style="font-size: 2rem;">
     <h1>Gallery</h1>
   </div>
-  <GalleryImages urls={urls} client:load />
+  <GalleryImages client:load initial={initialChunk} />
 </BaseLayout>

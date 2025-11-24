@@ -7,23 +7,39 @@
   font-style: normal;
 }
 
+html {
+  font-size: clamp(16px, 1.2vw, 20px);
+  /* 
+    - Minimum: 16px (comfortable for small screens)
+    - Scales with 1.2% of viewport width
+    - Maximum: 20px (prevents oversized text on ultra-wide monitors)
+  */
+}
+
 h1 {
+  font-size: clamp(2rem, 4vw, 3rem);
   font-weight: 700;
   font-style: normal;
   padding-bottom: 1rem;
 }
 
 h2 {
-  font-weight: 500;
+  font-size: clamp(1.5rem, 3vw, 2.25rem);
+  font-weight: 700;
   font-style: normal;
   padding-bottom: 0.5rem;
 }
 
 h3 {
+  font-size: clamp(1.25rem, 2.5vw, 1.75rem);
   padding-bottom: 0.5rem;
 }
 
-.main {
+p {
+  font-size: clamp(1rem, 1.5vw, 1.75rem);
+}
+
+main {
   width: 100%;
   margin: 0 auto;
   display: flex;

@@ -1,0 +1,2 @@
+This .gitkeep is created to ensure the ./src/data/ folder get tracked by the git, because empty folders won't get tracked.
+Otherwise, running "npm run build" will result in error during the gallery_items.json & music_items.json generation process.

@@ -1,14 +1,20 @@
-<script>
+<script lang="ts">
   import { onMount } from "svelte";
   import gsap from "gsap";
 
-  export let styleVariant = "default";
+  type RGBColor = [number, number, number];
+
+  export let styleVariant: string = "default";
+  const variantColorsRGB = new Map<string, RGBColor>([
+      ["default", [32, 68, 152]],
+      ["album", [228, 9, 9]]
+    ]);
+
   let isMenuOpen = false;
 
-  let header;
-  let navLinks;
+  let header: any;
+  let navLinks: object;
   let hamburgerBtn;
-  let navRight;
 
   function toggleMenu() {
     isMenuOpen = !isMenuOpen;
@@ -33,29 +39,34 @@
     }
   }
 
+  function clampRGB(value: number): number {
+    return Math.min(255, Math.max(0, Math.round(value)));
+  }
+
   onMount(() => {
-    const transparencyThreshold = 4;
-    const backgroundOpacity = 0.5;
+    const transparencyThreshold: number = 4;
+    const backgroundOpacity: number = 0.5;
 
-    const variantColorsRGB = {
-      default: [32, 68, 152],
-      album: [228, 9, 9],
-    };
-
-    function updateHeaderBackground(scrollY) {
+    function updateHeaderBackground(scrollY: number) {
       const isScrolled = scrollY > transparencyThreshold;
 
-      const baseColor = variantColorsRGB[styleVariant];
-      if (!baseColor) return;
+      const baseColor = variantColorsRGB.get(styleVariant);
+      if (!baseColor) {
+        console.warn(`Unknown base color type for navbar: ${styleVariant}`);
+        return;
+      }
+
+      const normalizedColors = baseColor.map(clampRGB);
 
       const alpha = isScrolled ? backgroundOpacity : 1;
-      header.style.backgroundColor = `rgba(${baseColor.join(", ")}, ${alpha})`;
+      header.style.backgroundColor = `rgba(${normalizedColors.join(", ")}, ${alpha})`;
     }
+    
     updateHeaderBackground(window.scrollY);
 
     // Scroll listener to update both transform and background
     window.addEventListener("scroll", () => {
-      const currentScrollY = window.scrollY;
+      const currentScrollY: number = window.scrollY;
       updateHeaderBackground(currentScrollY);
     });
   });
@@ -72,7 +83,7 @@
     <button
       class="hamburger-menu"
       aria-label="Menu"
-      on:click={toggleMenu}
+      onclick={toggleMenu}
       bind:this={hamburgerBtn}
     >
       ☰
@@ -116,11 +127,11 @@
     font-style: normal;
   }
 
-  /* Album variant */
-  .site-header.album {
-    background-color: rgba(228, 9, 9, 1);
+  /* Music variant */
+  .site-header.music {
+    background-color: rgba(255, 255, 255, 0);
   }
-  .site-header.album a {
+  .site-header.music a {
     color: white;
     font-family: "Zen Maru Gothic", sans-serif;
     font-weight: 700;
@@ -184,7 +195,7 @@
       top: 100%;
       left: 0;
       width: 100%;
-      background-color: rgba(16, 43, 82, 0.95); 
+      background-color: rgba(16, 43, 82, 0.95);
       text-align: center;
     }
 
