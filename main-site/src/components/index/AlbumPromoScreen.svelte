@@ -33,7 +33,7 @@
       <button class="close-btn" on:click={close}>&times;</button>
 
       <img
-        src="https://res.cloudinary.com/djow2j0qk/image/upload/w_1360,f_webp,q_auto:good/v1749822961/hd_baum_shizuha_wide-min_ljl8zw.png"
+        src="https://res.cloudinary.com/djow2j0qk/image/upload/w_1360,f_webp,q_auto:eco/v1749822961/hd_baum_shizuha_wide-min_ljl8zw.png"
         alt="Promo"
         class="promo-image"
       />

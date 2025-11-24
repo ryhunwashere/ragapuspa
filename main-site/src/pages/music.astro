@@ -5,6 +5,7 @@ import Wheel from "../components/music/Wheel.svelte";
 import BackgroudImage from "../components/music/BackgroundImage.svelte";
 import PlaybackButton from "../components/music/PlaybackButton.svelte";
 import AudioPlayer from "../components/music/AudioPlayer.svelte";
+import MusicDescription from "../components/music/MusicDescription.svelte";
 
 import cards from "../data/cards.json";
 ---
@@ -13,29 +14,7 @@ import cards from "../data/cards.json";
   <section class="music-selector">
     <BackgroudImage client:idle />
     <div class="left-container">
-      <h2 class="release-title">A Song Title</h2>
-      <p class="description">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-        veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-        commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-        velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
-        occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-        mollit anim id est laborum.
-      </p>
-      <ul class="credits">
-        <li>Album:</li>
-        <li>Arranger:</li>
-        <li>Original:</li>
-        <li>Artwork:</li>
-      </ul>
-
-      <div class="hyperlinks">
-        <button class="hyperlink-button" aria-label="Bandcamp">
-          <img class="icon" src="/icons/bandcamp-logo.svg" />
-        </button>
-      </div>
-
+      <MusicDescription client:idle />
     </div>
 
     <div class="playback-container">
@@ -50,32 +29,6 @@ import cards from "../data/cards.json";
 </MusicLayout>
 
 <style>
-  .hyperlinks {
-    padding-top: 5%;
-  }
-
-  .hyperlink-button {
-    font-size: 0;
-    background-color: white;
-    border: none;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 70%;
-  }
-
-  .hyperlink-button:hover {
-    cursor: pointer;
-    transform: scale(1.1);
-    transition: transform 0.2s ease;
-  }
-
-  .icon {
-    border-radius: 70%;
-    width: 50px;
-    height: 50px;
-  }
-
   .music-selector {
     position: relative;
     display: flex;
@@ -88,20 +41,25 @@ import cards from "../data/cards.json";
   .left-container {
     color: white;
     position: relative;
-    width: 70%;
-    padding-left: 4%;
+    width: 50%;
+    padding-left: 3%;
     padding-top: 0.5%;
     background: black;
     background: linear-gradient(
       90deg,
-      rgba(0, 0, 0, 0.6) 50%,
+      rgba(0, 0, 0, 0.6) 60%,
       rgba(255, 255, 255, 0) 100%
     );
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+    overflow: hidden;
   }
 
   .playback-container {
     z-index: 1;
-    width: 40vw;
+    width: 30vw;
     display: flex;
     align-items: center;
     justify-content: flex-end;
@@ -109,7 +67,7 @@ import cards from "../data/cards.json";
 
   .right-container {
     position: relative;
-    width: 60vw;
+    width: 40vw;
     right: 0px;
     overflow-y: scroll;
     padding-left: 1rem;

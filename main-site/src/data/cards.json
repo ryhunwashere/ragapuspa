@@ -1,16 +1,37 @@
 [
   {
     "title": "Secret God",
+    "musicDetails": {
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ipsum ante, vestibulum quis est at, dapibus tempus dolor. In hac habitasse platea dictumst. Integer commodo odio vitae egestas suscipit. Cras mattis lorem quis odio blandit tincidunt. Integer eget dui vestibulum, ultricies est a, ultrices felis. Integer dignissim odio non tellus ultrices pretium. Donec tincidunt lobortis dolor quis convallis. Sed hendrerit mattis elit, vel congue lacus rhoncus nec. Nunc sit amet justo dictum, porttitor lacus ac, gravida turpis. Nullam id nunc elit. Suspendisse tincidunt porttitor neque in convallis. Sed facilisis justo non massa placerat, vel congue arcu sagittis.",
+      "album": "Binary Worlds",
+      "arranger": "Ryhun & Haa-kun",
+      "originalSong": "Secret God Matara",
+      "artworkArtist": "Baumkuchen"
+    },
     "imageUrl": "https://res.cloudinary.com/djow2j0qk/image/upload/f_webp,q_auto:low/v1749647239/baum_nareko_z4ocpr.jpg",
     "audioUrl": "https://res.cloudinary.com/djow2j0qk/video/upload/v1750230136/RGPS-0002%7CBeyondtheWorlds%7C01%7CSecretGod%7C2025-10-06%7Calbum.mp3"
   },
   {
     "title": "Romantic Colours",
+    "musicDetails": {
+      "description": "Sed ipsum ante, vestibulum quis est at, dapibus tempus dolor.",
+      "album": "Neon Realms LP",
+      "arranger": "Ryhun",
+      "originalSong": "Romantic Fall",
+      "artworkArtist": "Baumkuchen"
+    },
     "imageUrl": "https://res.cloudinary.com/djow2j0qk/image/upload/f_webp,q_auto:low/v1749647241/baum_shizuha_ym4d4z.jpg",
     "audioUrl": "https://res.cloudinary.com/djow2j0qk/video/upload/v1750064262/RGPS-0001%7CBinaryWorlds%7C04%7CRomanticColours%7C2025-05-30%7Csingle.ogg"
   },
   {
     "title": "Wheelchair Song",
+    "musicDetails": {
+      "description": "Song about ancient wheelchairs",
+      "album": "Binary Worlds",
+      "arranger": "Ryhun",
+      "originalSong": "Magical Wheelchair",
+      "artworkArtist": "Baumkuchen"
+    },
     "imageUrl": "https://res.cloudinary.com/djow2j0qk/image/upload/f_webp,q_auto:low/v1749647241/baum_shizuha_ym4d4z.jpg",
     "audioUrl": "https://res.cloudinary.com/djow2j0qk/video/upload/v1750172758/RGPS-0001%7CBinaryWorlds%7C01%7CWheelChairSong%7C2025-08-01%7Calbum.mp3"
   }
