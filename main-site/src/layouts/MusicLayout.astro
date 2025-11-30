@@ -1,5 +1,6 @@
 ---
-import NavbarMusic from "../components/music/NavbarMusic.svelte";
+import { ClientRouter } from "astro:transitions";
+
 import Footer from "../components/global/Footer.astro";
 import "../styles/global.css";
 
@@ -20,16 +21,15 @@ import VercelSpeedInsights from "@vercel/speed-insights/astro";
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Music | Ragapuspa</title>
+    <ClientRouter />
+    <VercelSpeedInsights />
   </head>
 
   <body>
-    <NavbarMusic client:load />
-
     <!-- Main content -->
     <main>
       <slot />
     </main>
-    <VercelSpeedInsights />
   </body>
   
   <Footer />

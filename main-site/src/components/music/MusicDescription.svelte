@@ -3,40 +3,51 @@
   $: currentCard = $selectedCard;
 </script>
 
-{#if currentCard}
-  <div class="top-details">
-    {#key currentCard}
-      <h2 class="release-title">{currentCard.title}</h2>
-      <p class="description">{currentCard.musicDetails.description}</p>
-    {/key}
-  </div>
-
-  <div class="bottom-details">
-    <div class="details">
+<div class="music-description">
+  {#if currentCard}
+    <div class="top-details">
       {#key currentCard}
-        <ul>
-          <li>Album: {currentCard.musicDetails.album}</li>
-          <li>Arranger: {currentCard.musicDetails.arranger}</li>
-          <li>Original: {currentCard.musicDetails.originalSong}</li>
-          <li>Artwork: {currentCard.musicDetails.artworkArtist}</li>
-        </ul>
+        <h1 class="release-title">{currentCard.title}</h1>
+        <p class="description">{currentCard.musicDetails.description}</p>
       {/key}
     </div>
 
-    <div class="hyperlinks">
-      <button class="hyperlink-button" aria-label="Bandcamp">
-        <img class="icon" alt="Bandcamp Icon" src="/icons/bandcamp-logo.svg" />
-      </button>
+    <div class="bottom-details">
+      <div class="details">
+        {#key currentCard}
+          <ul>
+            <li>Album: {currentCard.musicDetails.album}</li>
+            <li>Arranger: {currentCard.musicDetails.arranger}</li>
+            <li>Original: {currentCard.musicDetails.originalSong}</li>
+            <li>Artwork: {currentCard.musicDetails.artworkArtist}</li>
+          </ul>
+        {/key}
+      </div>
+
+      <div class="hyperlinks">
+        <button class="hyperlink-button" aria-label="Bandcamp">
+          <img
+            class="icon"
+            alt="Bandcamp Icon"
+            src="/icons/bandcamp-logo.svg"
+          />
+        </button>
+      </div>
     </div>
-  </div>
-{/if}
+  {/if}
+</div>
 
 <style>
+  .music-description {
+    padding-left: 5%;
+  }
+
   .top-details {
     display: flex;
     position: relative;
     top: 0;
     padding-top: 1%;
+    padding-bottom: 5%;
     flex-direction: column;
     overflow: hidden;
   }
@@ -54,10 +65,9 @@
   }
 
   .description {
-    padding-top: 10%;
+    padding-top: 5%;
     font-size: clamp(1rem, 1.25vw, 3rem);
     overflow-y: auto;
-    max-height: 40vh;
     padding-right: 10%;
     padding-bottom: 2rem;
     font-size: clamp(1rem, 1.25vw, 3rem);
@@ -73,7 +83,7 @@
   }
 
   .description::-webkit-scrollbar {
-    width: 8px;
+    width: 10px;
   }
 
   .description::-webkit-scrollbar-thumb {
@@ -84,6 +94,11 @@
   .details {
     list-style: none;
     margin-bottom: 5%;
+  }
+
+  ul {
+    list-style-type: none;
+    font-size: large;
   }
 
   .hyperlink-button {
@@ -106,5 +121,11 @@
     border-radius: 70%;
     width: 50px;
     height: 50px;
+  }
+
+  @media screen and (max-width: 768px) {
+    .top-details {
+      padding-top: 5%;
+    }
   }
 </style>

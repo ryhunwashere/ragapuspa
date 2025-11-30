@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@astrojs/svelte": "^7.2.2",
+    "@astrojs/ts-plugin": "^1.10.6",
     "@vercel/speed-insights": "^1.2.0",
     "astro": "^5.16.0",
     "cloudinary": "^2.6.1",

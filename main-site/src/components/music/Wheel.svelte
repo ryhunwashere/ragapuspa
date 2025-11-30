@@ -3,7 +3,9 @@
   import { selectedCard, isPlaying, type CardData } from "../../stores/selectedCard.ts";
   import { onMount } from "svelte";
 
-  export let cards: CardData[] = [];
+  import musicCards from "../../data/cards.json";
+
+  const cards: CardData[] = musicCards;
 
   let cardElements: HTMLDivElement[] = [];
   let selectedIndex: number;
@@ -104,6 +106,12 @@
     will-change: transform;
     touch-action: none;
     user-select: none;
+  }
+
+  @media (max-width:763px) {
+    .wheel {
+      visibility: hidden;
+    }
   }
 
   .card {

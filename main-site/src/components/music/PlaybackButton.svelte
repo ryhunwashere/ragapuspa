@@ -47,4 +47,11 @@
     opacity: 1;
     transition: opacity 0.2s ease;
   }
+
+  @media (max-width: 768px) {
+    .playback-button {
+      display: none;
+      visibility: hidden;
+    }
+  }
 </style>

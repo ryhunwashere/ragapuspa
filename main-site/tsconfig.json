@@ -4,6 +4,11 @@
   "exclude": ["dist", "node_modules", ".astro", ".vscode"],
   "compilerOptions": {
     "forceConsistentCasingInFileNames": true,
-    "strict": true
+    "strict": true,
+    "plugins": [
+      {
+        "name": "@astrojs/ts-plugin"
+      }
+    ]
   }
 }

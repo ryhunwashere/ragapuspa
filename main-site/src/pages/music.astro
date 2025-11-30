@@ -2,29 +2,75 @@
 import MusicLayout from "../layouts/MusicLayout.astro";
 
 import Wheel from "../components/music/Wheel.svelte";
+
 import BackgroudImage from "../components/music/BackgroundImage.svelte";
 import PlaybackButton from "../components/music/PlaybackButton.svelte";
 import AudioPlayer from "../components/music/AudioPlayer.svelte";
 import MusicDescription from "../components/music/MusicDescription.svelte";
-
-import cards from "../data/cards.json";
 ---
+<script is:inline>
+  const MOBILE_WIDTH = 768;
+  let isMobile = window.innerWidth <= MOBILE_WIDTH;
+
+  // Hidden by default on mobile, visible on desktop
+  let isHidden = isMobile;
+
+  function getTransform(hidden, mobile) {
+    if (mobile) return hidden ? "translateY(90%)" : "translateY(0%)";
+    return hidden ? "translateX(-90%)" : "translateX(0%)";
+  }
+
+  function applyUI(descContainer, hideButton) {
+    descContainer.style.transform = getTransform(isHidden, isMobile);
+    hideButton.innerText = isHidden ? "Show" : "Hide";
+  }
+
+  window.addEventListener("DOMContentLoaded", () => {
+    const hideButton = document.getElementById("hideBtn");
+    const descContainer = document.getElementById("desc");
+
+    // Initial UI rendering
+    applyUI(descContainer, hideButton);
+
+    hideButton.addEventListener("click", () => {
+      isHidden = !isHidden;
+      applyUI(descContainer, hideButton);
+    });
+
+    window.addEventListener("resize", () => {
+      const newIsMobile = window.innerWidth <= MOBILE_WIDTH;
+
+      if (newIsMobile !== isMobile) {
+        isMobile = newIsMobile;
+        applyUI(descContainer, hideButton);
+      }
+    });
+  });
+</script>
 
 <MusicLayout>
   <section class="music-selector">
     <BackgroudImage client:idle />
-    <div class="left-container">
-      <MusicDescription client:idle />
+
+    <div class="desc-container" id="desc">
+      <div class="hide-button">
+        <button
+          id="hideBtn"
+          style="width:100%; height:100%;"
+          aria-label="Hide Description Button"></button>
+      </div>
+      <MusicDescription client:visible />
     </div>
 
     <div class="playback-container">
       <PlaybackButton client:visible />
     </div>
 
-    <div class="right-container">
-      <Wheel client:idle cards={cards} />
-      <AudioPlayer client:idle />
+    <div class="wheel-container">
+      <Wheel client:idle />
     </div>
+
+    <AudioPlayer client:idle />
   </section>
 </MusicLayout>
 
@@ -35,39 +81,48 @@ import cards from "../data/cards.json";
     width: 100%;
     height: 100vh;
     overflow: hidden;
-    background-color: rgb(54, 54, 54);
   }
 
-  .left-container {
+  .desc-container {
+    display: flex;
     color: white;
     position: relative;
-    width: 50%;
-    padding-left: 3%;
-    padding-top: 0.5%;
+    width: 100%;
+    height: auto;
     background: black;
     background: linear-gradient(
       90deg,
       rgba(0, 0, 0, 0.6) 60%,
       rgba(255, 255, 255, 0) 100%
     );
-    display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: space-between;
-    height: 100%;
     overflow: hidden;
+    transition: transform 0.3s ease;
+  }
+
+  .hide-button {
+    display: block;
+    position: absolute;
+    background: lightblue;
+    text-align: center;
+    width: 100%;
+    height: 10%;
+    z-index: 100;
   }
 
   .playback-container {
     z-index: 1;
-    width: 30vw;
+    width: 50%;
     display: flex;
     align-items: center;
     justify-content: flex-end;
+    background: lightblue;
   }
 
-  .right-container {
+  .wheel-container {
     position: relative;
-    width: 40vw;
+    width: 50%;
     right: 0px;
     overflow-y: scroll;
     padding-left: 1rem;
@@ -75,25 +130,25 @@ import cards from "../data/cards.json";
     scrollbar-width: none;
   }
 
-  .right-container::-webkit-scrollbar {
+  .wheel-container::-webkit-scrollbar {
     display: none;
   }
 
-  .release-title {
-    padding-top: 5%;
-    letter-spacing: -4px;
-    font-size: clamp(4rem, 1.25vw, 8rem);
-  }
+  @media screen and (max-width: 768px) {
+    .music-selector {
+      flex-direction: column;
+    }
 
-  .description {
-    padding-top: 10%;
-    padding-right: 20%;
-    font-size: clamp(1rem, 1.25vw, 3rem);
-  }
+    .desc-container {
+      width: 100%;
+      height: 100%;
+      flex-direction: column;
+    }
 
-  .credits {
-    list-style: none;
-    padding-top: 50px;
-    margin-bottom: auto;
+    .playback-container,
+    .wheel-container {
+      display: none;
+      visibility: hidden;
+    }
   }
 </style>
