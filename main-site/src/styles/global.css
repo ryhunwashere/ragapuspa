@@ -9,11 +9,6 @@
 
 html {
   font-size: clamp(16px, 1.2vw, 20px);
-  /* 
-    - Minimum: 16px (comfortable for small screens)
-    - Scales with 1.2% of viewport width
-    - Maximum: 20px (prevents oversized text on ultra-wide monitors)
-  */
 }
 
 h1 {
@@ -45,5 +40,4 @@ main {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-bottom: 10px;
 }
