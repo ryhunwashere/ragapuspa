@@ -68,12 +68,12 @@
     overflow-y: auto;
     padding-right: 10%;
     padding-top: 2rem;
-    padding-bottom: 2rem;
+    padding-bottom: 1rem;
     mask-image: linear-gradient(
       to bottom,
       transparent 0%,
       black 15%,
-      black 85%,
+      black 70%,
       transparent 100%
     );
     mask-size: 100% 100%;
@@ -90,7 +90,7 @@
   }
 
   .details {
-    margin-bottom: 5%;
+    margin-bottom: 3%;
   }
 
   ul {
@@ -121,6 +121,10 @@
   }
 
   @media screen and (max-width: 768px) {
+    .description {
+      font-size: large;
+    }
+
     .top-details {
       padding-top: 5%;
     }
