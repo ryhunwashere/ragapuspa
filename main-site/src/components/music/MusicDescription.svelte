@@ -39,22 +39,22 @@
 
 <style>
   .music-description {
-    padding-left: 5%;
-  }
-
-  .top-details {
     display: flex;
-    position: relative;
-    top: 0;
-    padding-top: 1%;
-    padding-bottom: 5%;
     flex-direction: column;
+    height: 100%;
+    padding-left: 5%;
     overflow: hidden;
   }
 
+  .top-details {
+    flex: 1;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+
   .bottom-details {
-    position: relative;
-    bottom: 0;
+    margin-top: auto;
     padding-bottom: 5%;
   }
 
@@ -65,12 +65,10 @@
   }
 
   .description {
-    padding-top: 5%;
-    font-size: clamp(1rem, 1.25vw, 3rem);
     overflow-y: auto;
     padding-right: 10%;
+    padding-top: 2rem;
     padding-bottom: 2rem;
-    font-size: clamp(1rem, 1.25vw, 3rem);
     mask-image: linear-gradient(
       to bottom,
       transparent 0%,
@@ -83,7 +81,7 @@
   }
 
   .description::-webkit-scrollbar {
-    width: 10px;
+    width: 8px;
   }
 
   .description::-webkit-scrollbar-thumb {
@@ -92,7 +90,6 @@
   }
 
   .details {
-    list-style: none;
     margin-bottom: 5%;
   }
 

@@ -2,72 +2,22 @@
 import MusicLayout from "../layouts/MusicLayout.astro";
 
 import Wheel from "../components/music/Wheel.svelte";
-
 import BackgroudImage from "../components/music/BackgroundImage.svelte";
 import PlaybackButton from "../components/music/PlaybackButton.svelte";
 import AudioPlayer from "../components/music/AudioPlayer.svelte";
-import MusicDescription from "../components/music/MusicDescription.svelte";
+import MusicDescriptionWrapper from "../components/music/MusicDescriptionWrapper.astro";
 ---
-<script is:inline>
-  const MOBILE_WIDTH = 768;
-  let isMobile = window.innerWidth <= MOBILE_WIDTH;
-
-  // Hidden by default on mobile, visible on desktop
-  let isHidden = isMobile;
-
-  function getTransform(hidden, mobile) {
-    if (mobile) return hidden ? "translateY(90%)" : "translateY(0%)";
-    return hidden ? "translateX(-90%)" : "translateX(0%)";
-  }
-
-  function applyUI(descContainer, hideButton) {
-    descContainer.style.transform = getTransform(isHidden, isMobile);
-    hideButton.innerText = isHidden ? "Show" : "Hide";
-  }
-
-  window.addEventListener("DOMContentLoaded", () => {
-    const hideButton = document.getElementById("hideBtn");
-    const descContainer = document.getElementById("desc");
-
-    // Initial UI rendering
-    applyUI(descContainer, hideButton);
-
-    hideButton.addEventListener("click", () => {
-      isHidden = !isHidden;
-      applyUI(descContainer, hideButton);
-    });
-
-    window.addEventListener("resize", () => {
-      const newIsMobile = window.innerWidth <= MOBILE_WIDTH;
-
-      if (newIsMobile !== isMobile) {
-        isMobile = newIsMobile;
-        applyUI(descContainer, hideButton);
-      }
-    });
-  });
-</script>
-
 <MusicLayout>
   <section class="music-selector">
     <BackgroudImage client:idle />
-
-    <div class="desc-container" id="desc">
-      <div class="hide-button">
-        <button
-          id="hideBtn"
-          style="width:100%; height:100%;"
-          aria-label="Hide Description Button"></button>
-      </div>
-      <MusicDescription client:visible />
-    </div>
+    <MusicDescriptionWrapper />
 
     <div class="playback-container">
       <PlaybackButton client:visible />
     </div>
 
     <div class="wheel-container">
-      <Wheel client:idle />
+      <Wheel client:load />
     </div>
 
     <AudioPlayer client:idle />
@@ -83,46 +33,17 @@ import MusicDescription from "../components/music/MusicDescription.svelte";
     overflow: hidden;
   }
 
-  .desc-container {
-    display: flex;
-    color: white;
-    position: relative;
-    width: 100%;
-    height: auto;
-    background: black;
-    background: linear-gradient(
-      90deg,
-      rgba(0, 0, 0, 0.6) 60%,
-      rgba(255, 255, 255, 0) 100%
-    );
-    flex-direction: row;
-    justify-content: space-between;
-    overflow: hidden;
-    transition: transform 0.3s ease;
-  }
-
-  .hide-button {
-    display: block;
-    position: absolute;
-    background: lightblue;
-    text-align: center;
-    width: 100%;
-    height: 10%;
-    z-index: 100;
-  }
-
   .playback-container {
     z-index: 1;
     width: 50%;
     display: flex;
     align-items: center;
     justify-content: flex-end;
-    background: lightblue;
   }
 
   .wheel-container {
     position: relative;
-    width: 50%;
+    width: 80%;
     right: 0px;
     overflow-y: scroll;
     padding-left: 1rem;
@@ -134,6 +55,16 @@ import MusicDescription from "../components/music/MusicDescription.svelte";
     display: none;
   }
 
+  @media screen and (min-width: 768px) {
+    .hide-button {
+      width: 10%;
+      height: 100%;
+      top: 50%;
+      right: 0;
+      transform: translateY(-50%);
+    }
+  }
+
   @media screen and (max-width: 768px) {
     .music-selector {
       flex-direction: column;
@@ -143,6 +74,12 @@ import MusicDescription from "../components/music/MusicDescription.svelte";
       width: 100%;
       height: 100%;
       flex-direction: column;
+      padding-right: 0%;
+      background: linear-gradient(
+        360deg,
+        rgba(0, 0, 0, 0.7) 90%,
+        rgba(255, 255, 255, 0) 100%
+      );
     }
 
     .playback-container,
