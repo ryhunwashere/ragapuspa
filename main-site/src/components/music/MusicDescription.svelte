@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { selectedCard } from "../../stores/selectedCard.ts";
+  import { selectedCard } from "@stores/selectedCard.ts";
   $: currentCard = $selectedCard;
 </script>
 

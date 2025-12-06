@@ -1,9 +1,9 @@
 <script lang="ts">
+  import { selectedCard, isPlaying, type CardData } from "@stores/selectedCard.ts";
   import { gsap } from "gsap";
-  import { selectedCard, isPlaying, type CardData } from "../../stores/selectedCard.ts";
   import { onMount } from "svelte";
 
-  import musicCards from "../../data/cards.json";
+  import musicCards from "@data/cards.json";
 
   const cards: CardData[] = musicCards;
 

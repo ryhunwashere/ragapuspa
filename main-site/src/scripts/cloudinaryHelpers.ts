@@ -1,4 +1,4 @@
-import cloudinary from "./cloudinaryConfig.ts";
+import cloudinary from "@scripts/cloudinaryConfig.ts";
 
 export async function fetchCloudinaryUrls(folderPath: string, type: string) {
   const allResources = [];
