@@ -6,7 +6,19 @@ import BackgroudImage from "@components/music/BackgroundImage.svelte";
 import PlaybackButton from "@components/music/PlaybackButton.svelte";
 import AudioPlayer from "@components/music/AudioPlayer.svelte";
 import MusicDescriptionWrapper from "@components/music/MusicDescriptionWrapper.astro";
+
+import musicCards from "@data/cards.json";
+import type { CardData } from "@stores/selectedCard.ts";
+
+const { song } = Astro.params;
+
+export async function getStaticPaths() {
+  return (musicCards as CardData[]).map((card) => {
+    return { params: { song: card.slug } };
+  });
+}
 ---
+
 <MusicLayout>
   <section class="music-selector">
     <BackgroudImage client:idle />
@@ -17,7 +29,7 @@ import MusicDescriptionWrapper from "@components/music/MusicDescriptionWrapper.a
     </div>
 
     <div class="wheel-container">
-      <Wheel client:load />
+      <Wheel client:load initialSongSlug={song} />
     </div>
 
     <AudioPlayer client:idle />

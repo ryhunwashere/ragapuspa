@@ -1,0 +1,14 @@
+---
+import musicCards from "@data/cards.json";
+import type { CardData } from "@stores/selectedCard.ts";
+
+const cards: CardData[] = musicCards;
+const firstSongSlug = cards[0]?.slug;
+
+if (firstSongSlug) {
+  const targetUrl = `/music/${firstSongSlug}`;
+  return Astro.redirect(targetUrl, 301);
+}
+
+return Astro.redirect("/", 302);
+---

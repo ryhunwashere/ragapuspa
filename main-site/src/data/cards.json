@@ -1,6 +1,7 @@
 [
   {
     "title": "Secret God",
+    "slug": "secret-god",
     "musicDetails": {
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ipsum ante, vestibulum quis est at, dapibus tempus dolor. In hac habitasse platea dictumst. Integer commodo odio vitae egestas suscipit. Cras mattis lorem quis odio blandit tincidunt. Integer eget dui vestibulum, ultricies est a, ultrices felis. Integer dignissim odio non tellus ultrices pretium. Donec tincidunt lobortis dolor quis convallis. Sed hendrerit mattis elit, vel congue lacus rhoncus nec. Nunc sit amet justo dictum, porttitor lacus ac, gravida turpis. Nullam id nunc elit. Suspendisse tincidunt porttitor neque in convallis. Sed facilisis justo non massa placerat, vel congue arcu sagittis. iojwginiuavnreainvanvrinrakrvnra ioafivmoiamvoim oaimv.",
       "album": "Binary Worlds",
@@ -13,6 +14,7 @@
   },
   {
     "title": "Romantic Colours",
+    "slug": "romantic-colours",
     "musicDetails": {
       "description": "Sed ipsum ante, vestibulum quis est at, dapibus tempus dolor.",
       "album": "Neon Realms LP",
@@ -25,6 +27,7 @@
   },
   {
     "title": "Wheelchair Song",
+    "slug": "wheelchair-song",
     "musicDetails": {
       "description": "Song about ancient wheelchairs",
       "album": "Binary Worlds",

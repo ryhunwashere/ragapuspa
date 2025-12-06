@@ -10,6 +10,7 @@ type MusicDetails = {
 
 export interface CardData {
   title: string;
+  slug: string;
   musicDetails: MusicDetails;
   audioUrl: string;
   imageUrl: string;
