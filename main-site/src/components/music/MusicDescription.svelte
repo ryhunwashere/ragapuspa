@@ -1,71 +1,79 @@
 <script lang="ts">
-  import { selectedCard } from "../../stores/selectedCard.ts";
+  import { selectedCard } from "@stores/selectedCard.ts";
   $: currentCard = $selectedCard;
 </script>
 
-{#if currentCard}
-  <div class="top-details">
-    {#key currentCard}
-      <h2 class="release-title">{currentCard.title}</h2>
-      <p class="description">{currentCard.musicDetails.description}</p>
-    {/key}
-  </div>
-
-  <div class="bottom-details">
-    <div class="details">
+<div class="music-description">
+  {#if currentCard}
+    <div class="top-details">
       {#key currentCard}
-        <ul>
-          <li>Album: {currentCard.musicDetails.album}</li>
-          <li>Arranger: {currentCard.musicDetails.arranger}</li>
-          <li>Original: {currentCard.musicDetails.originalSong}</li>
-          <li>Artwork: {currentCard.musicDetails.artworkArtist}</li>
-        </ul>
+        <h1 class="release-title">{currentCard.title}</h1>
+        <p class="description">{currentCard.musicDetails.description}</p>
       {/key}
     </div>
 
-    <div class="hyperlinks">
-      <button class="hyperlink-button" aria-label="Bandcamp">
-        <img class="icon" alt="Bandcamp Icon" src="/icons/bandcamp-logo.svg" />
-      </button>
+    <div class="bottom-details">
+      <div class="details">
+        {#key currentCard}
+          <ul>
+            <li>Album: {currentCard.musicDetails.album}</li>
+            <li>Arranger: {currentCard.musicDetails.arranger}</li>
+            <li>Original: {currentCard.musicDetails.originalSong}</li>
+            <li>Artwork: {currentCard.musicDetails.artworkArtist}</li>
+          </ul>
+        {/key}
+      </div>
+
+      <div class="hyperlinks">
+        <button class="hyperlink-button" aria-label="Bandcamp">
+          <img
+            class="icon"
+            alt="Bandcamp Icon"
+            src="/icons/bandcamp-logo.svg"
+          />
+        </button>
+      </div>
     </div>
-  </div>
-{/if}
+  {/if}
+</div>
 
 <style>
-  .top-details {
+  .music-description {
     display: flex;
-    position: relative;
-    top: 0;
-    padding-top: 1%;
     flex-direction: column;
+    height: 100%;
+    padding-left: 5%;
     overflow: hidden;
   }
 
+  .top-details {
+    flex: 1;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+
   .bottom-details {
-    position: relative;
-    bottom: 0;
+    margin-top: auto;
     padding-bottom: 5%;
   }
 
   .release-title {
-    padding-top: 10%;
+    padding-top: 8%;
     letter-spacing: -3px;
     font-size: clamp(4rem, 1.25vw, 8rem);
   }
 
   .description {
-    padding-top: 10%;
-    font-size: clamp(1rem, 1.25vw, 3rem);
     overflow-y: auto;
-    max-height: 40vh;
     padding-right: 10%;
-    padding-bottom: 2rem;
-    font-size: clamp(1rem, 1.25vw, 3rem);
+    padding-top: 1rem;
+    padding-bottom: 3.8rem;
     mask-image: linear-gradient(
       to bottom,
       transparent 0%,
-      black 15%,
-      black 85%,
+      black 10%,
+      black 70%,
       transparent 100%
     );
     mask-size: 100% 100%;
@@ -82,8 +90,12 @@
   }
 
   .details {
-    list-style: none;
-    margin-bottom: 5%;
+    margin-bottom: 3%;
+  }
+
+  ul {
+    list-style-type: none;
+    font-size: large;
   }
 
   .hyperlink-button {
@@ -106,5 +118,15 @@
     border-radius: 70%;
     width: 50px;
     height: 50px;
+  }
+
+  @media screen and (max-width: 768px) {
+    .description {
+      font-size: large;
+    }
+
+    .top-details {
+      padding-top: 5%;
+    }
   }
 </style>

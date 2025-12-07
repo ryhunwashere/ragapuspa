@@ -1,21 +1,34 @@
 <script lang="ts">
+  import { selectedCard, isPlaying, type CardData } from "@stores/selectedCard.ts";
   import { gsap } from "gsap";
-  import { selectedCard, isPlaying, type CardData } from "../../stores/selectedCard.ts";
   import { onMount } from "svelte";
 
-  export let cards: CardData[] = [];
+  import musicCards from "@data/cards.json";
+
+  const cards: CardData[] = musicCards;
+
+  export let initialSongSlug: string | undefined;
 
   let cardElements: HTMLDivElement[] = [];
   let selectedIndex: number;
 
   onMount(() => {
+    let initialIndex = 0;
+
+    if (initialSongSlug) {
+      const foundIndex = cards.findIndex(card => card.slug === initialSongSlug);
+      if (foundIndex !== -1) {
+        initialIndex = foundIndex;
+      }
+    }
+
     if (cards.length > 0) {
-      handleMouseClick(cards[0], 0);
+      handleSongSelection(cards[initialIndex], initialIndex, false);
       isPlaying.set(false);
     }
   });
 
-  function handleMouseClick(card: CardData, index: number) {
+  function handleSongSelection(card: CardData, index: number, updateUrl: boolean = true) {
     for (let i = 0; i < cardElements.length; i++) {
       gsap.to(cardElements[i], {
         width: i === index ? "100%" : "80%",
@@ -33,6 +46,15 @@
     });
 
     isPlaying.set(true);
+
+    if (updateUrl && card.slug) {
+      const newPath = `/music/${card.slug}`;
+      history.pushState({ path: newPath }, '', newPath);
+    }
+  }
+
+  function handleMouseClick(card: CardData, index: number) {
+    handleSongSelection(card, index, true);
   }
 
   function handleMouseEnter(index: number) {
@@ -55,17 +77,16 @@
     });
   }
 
-  // Keyboard controls
   function handleKeydown(event: KeyboardEvent) {
     if (event.key === "ArrowDown") {
       event.preventDefault();
       if (selectedIndex < cards.length - 1) {
-        handleMouseClick(cards[selectedIndex + 1], selectedIndex + 1);
+        handleSongSelection(cards[selectedIndex + 1], selectedIndex + 1, true);
       }
     } else if (event.key === "ArrowUp") {
       event.preventDefault();
       if (selectedIndex > 0) {
-        handleMouseClick(cards[selectedIndex - 1], selectedIndex - 1);
+        handleSongSelection(cards[selectedIndex - 1], selectedIndex - 1, true);
       }
     }
   }
@@ -104,6 +125,12 @@
     will-change: transform;
     touch-action: none;
     user-select: none;
+  }
+
+  @media (max-width:763px) {
+    .wheel {
+      visibility: hidden;
+    }
   }
 
   .card {

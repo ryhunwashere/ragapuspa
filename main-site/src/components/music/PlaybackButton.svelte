@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { isPlaying } from "../../stores/selectedCard";
+  import { isPlaying } from "@stores/selectedCard.ts";
 
   function handleMouseClick() {
     isPlaying.update((playing) => !playing);
@@ -46,5 +46,12 @@
     height: 50px;
     opacity: 1;
     transition: opacity 0.2s ease;
+  }
+
+  @media (max-width: 768px) {
+    .playback-button {
+      display: none;
+      visibility: hidden;
+    }
   }
 </style>

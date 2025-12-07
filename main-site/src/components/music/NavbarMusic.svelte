@@ -8,7 +8,6 @@
   let headerEl: HTMLElement;
   let navLinksEl: HTMLDivElement;
   let hamburgerBtn;
-  let navRight;
 
   function toggleMenu() {
     isMenuOpen = !isMenuOpen;
@@ -57,12 +56,10 @@
 
 <header class="site-header {styleVariant}" bind:this={headerEl}>
   <nav class="navbar">
-    <!-- Left aligned section -->
     <div class="nav-left">
       <a href="/">Ragapuspa</a>
     </div>
 
-    <!-- Hamburger icon -->
     <button
       class="hamburger-menu"
       aria-label="Menu"
@@ -72,7 +69,6 @@
       ☰
     </button>
 
-    <!-- Right aligned section -->
     <div class="nav-right" id="navLinks" bind:this={navLinksEl}>
       <a href="/music">Music</a>
       <span class="separator"></span>
@@ -88,7 +84,6 @@
 </header>
 
 <style>
-  /* Header container */
   .site-header {
     position: fixed;
     top: 0;
@@ -99,7 +94,6 @@
     transition: background-color 0.4s ease;
   }
 
-  /* Default variant */
   .site-header.default {
     background-color: rgb(32, 61, 151, 1);
   }
@@ -110,7 +104,6 @@
     font-style: normal;
   }
 
-  /* Music variant */
   .site-header.music {
     background-color: rgba(255, 255, 255, 0);
   }
@@ -133,7 +126,6 @@
     padding: clamp(0.5rem, 0.7rem, 2rem);
   }
 
-  /* Default nav-right style for large screens */
   .nav-right {
     display: flex;
     flex-direction: row;
@@ -150,13 +142,11 @@
     margin: 0 0.5rem;
   }
 
-  /* Hide separator on small screens */
   .separator {
     display: inline;
     margin: 0 0.2rem;
   }
 
-  /* Hamburger icon default hidden on large screens */
   .hamburger-menu {
     color: white;
     display: none;

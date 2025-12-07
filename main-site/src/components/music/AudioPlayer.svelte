@@ -1,6 +1,5 @@
-<!-- AudioPlayer is a child of Wheel component -->
 <script lang="ts">
-  import { selectedCard, isPlaying } from "../../stores/selectedCard.ts";
+  import { selectedCard, isPlaying } from "@stores/selectedCard.ts";
   import { onDestroy } from "svelte";
 
   let audioEl: HTMLAudioElement | undefined;
