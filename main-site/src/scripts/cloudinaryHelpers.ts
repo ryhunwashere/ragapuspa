@@ -1,4 +1,4 @@
-import cloudinary from "@scripts/cloudinaryConfig.ts";
+import cloudinary from "./cloudinaryConfig.ts";
 
 export async function fetchCloudinaryUrls(folderPath: string, type: string) {
   const allResources = [];
@@ -22,7 +22,7 @@ export async function fetchCloudinaryUrls(folderPath: string, type: string) {
       uploadedAt: item.uploaded_at,
     }));
   } catch (err) {
-    console.error(`❌ Failed to fetch from Cloudinary folder "${folderPath}":`, err);
+    console.error(`Failed to fetch from Cloudinary folder "${folderPath}":`, err);
     return [];
   }
 }

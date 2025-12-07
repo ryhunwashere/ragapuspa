@@ -1,5 +1,5 @@
 import { writeFile } from "fs/promises";
-import { fetchCloudinaryUrls } from "@scripts/cloudinaryHelpers.ts";
+import { fetchCloudinaryUrls } from "./cloudinaryHelpers.ts";
 
 const WIDTH_NORMAL = 640;
 const WIDTH_SMALL = 400;
