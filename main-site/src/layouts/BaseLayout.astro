@@ -1,5 +1,5 @@
 ---
-import Navbar from "@components/global/Navbar.svelte";
+import Navbar from "@components/global/Navbar.astro";
 import Footer from "@components/global/Footer.astro";
 import { ClientRouter } from "astro:transitions";
 
@@ -7,7 +7,12 @@ import "@styles/global.css";
 
 import VercelSpeedInsights from "@vercel/speed-insights/astro";
 
-const { title } = Astro.props;
+export interface Props {
+  title: string;
+  showFooter?: boolean;
+}
+
+const { title = "Page", showFooter = true } = Astro.props;
 ---
 
 <!doctype html>
@@ -29,12 +34,10 @@ const { title } = Astro.props;
   </head>
 
   <body>
-    <Navbar styleVariant="default" client:load />
-
+    <Navbar />
     <main>
       <slot />
     </main>
+    {showFooter && <Footer />}
   </body>
-  
-  <Footer />
 </html>

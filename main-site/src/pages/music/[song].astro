@@ -1,5 +1,5 @@
 ---
-import MusicLayout from "@layouts/MusicLayout.astro";
+import BaseLayout from "@layouts/BaseLayout.astro";
 
 import Wheel from "@components/music/Wheel.svelte";
 import BackgroudImage from "@components/music/BackgroundImage.svelte";
@@ -17,9 +17,11 @@ export async function getStaticPaths() {
     return { params: { song: card.slug } };
   });
 }
+
+const title = "Music";
 ---
 
-<MusicLayout>
+<BaseLayout title={title} showFooter={false}>
   <section class="music-selector">
     <BackgroudImage client:idle />
     <MusicDescriptionWrapper />
@@ -34,7 +36,7 @@ export async function getStaticPaths() {
 
     <AudioPlayer client:idle />
   </section>
-</MusicLayout>
+</BaseLayout>
 
 <style>
   .music-selector {

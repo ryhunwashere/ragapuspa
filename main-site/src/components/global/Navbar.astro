@@ -1,81 +1,168 @@
-<button class="navbar-menu" aria-label="Menu">
-  <img class="icon" alt="Menu Button" src="/icons/hamburger-menu.svg" />
-</button>
+<div class="hamburger-container">
+  <button id="menuBtn" class="hamburger-menu" aria-label="Menu"> ☰ </button>
+</div>
 
-<nav class="navbar">
-  <div class="navbar-links">
-    <a href="/">Home</a>
-    <a href="/music">Music</a>
-    <a href="/gallery">Gallery</a>
-    <a href="/about">About</a>
+<nav id="siteNavbar" class="site-navbar">
+  <div id="menuList" class="menu-list">
+    <div class="home-link">
+      <div>
+        <a href="/">Ragapuspa</a>
+      </div>
+    </div>
+
+    <div class="nav-items">
+      <div class="link">
+        <a href="/about">About</a>
+      </div>
+      <div class="link">
+        <a href="/music">Music</a>
+      </div>
+      <div class="link">
+        <a href="/album1">Album</a>
+      </div>
+      <div class="link">
+        <a href="/gallery">Gallery</a>
+      </div>
+    </div>
   </div>
 </nav>
 
+<script is:inline>
+  function initNavbarScript() {
+    let isVisible = false;
+
+    const siteNavbar = document.getElementById("siteNavbar");
+    const menuBtn = document.getElementById("menuBtn");
+    const menuLinks = document.querySelectorAll("#menuList a");
+
+    if (!siteNavbar || !menuBtn) return;
+
+    const hideNavbar = () => {
+      if (isVisible) {
+        siteNavbar.style.transform = "translateX(-100%)";
+        isVisible = false;
+      }
+    };
+
+    const toggleMenu = () => {
+      siteNavbar.style.transform = isVisible
+        ? "translateX(-100%)"
+        : "translateX(0%)";
+      isVisible = !isVisible;
+    };
+
+    menuBtn.removeEventListener("click", toggleMenu);
+    menuBtn.addEventListener("click", toggleMenu);
+
+    menuLinks.forEach((link) => {
+      link.removeEventListener("click", hideNavbar);
+      link.addEventListener("click", hideNavbar);
+    });
+
+    hideNavbar();
+  }
+
+  initNavbarScript();
+
+  document.addEventListener("astro:after-swap", initNavbarScript);
+</script>
+
 <style>
-  .navbar {
-    padding-top: 2%;
-    text-align: center;
-    position: fixed;
-    height: 100%;
-    z-index: 99;
-    background-color: rgba(0, 0, 0);
-    backdrop-filter: blur(10px) invert(0%);
+  .hamburger-container {
+    z-index: 200;
+    display: flex;
     justify-content: center;
-  }
-
-  .navbar-top {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  .navbar-menu {
+    align-items: center;
     position: fixed;
-    background-color: rgba(0, 0, 0);
-    width: 3%;
-    padding-top: 8px;
-    padding-left: 8px;
-    padding-right: 8px;
-    padding-bottom: 4px;
-    border-bottom-right-radius: 5px;
-    z-index: 999;
+    width: 50px;
+    height: 50px;
+    border-radius: 8px;
+    background-color: #00000080;
+    transition: background-color 0.5s ease;
+    transform: translateX(25%) translateY(25%);
   }
 
-  .navbar-menu:hover {
-    cursor: pointer;
-    background-color: rgba(33, 33, 33, 0.94);
-    transition: background-color 0.1s ease;
+  .site-navbar {
+    z-index: 100;
+    position: fixed;
+    left: 0;
+    top: 0;
+    background-color: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(12px) invert(100%);
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
   }
 
-  .icon {
-    width: 100%;
-  }
-
-  .navbar-links {
+  .menu-list {
+    height: 100vh;
+    width: 15vw;
     display: flex;
     flex-direction: column;
-    margin-top: 10%;
   }
 
-  a {
+  .menu-list a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
     text-decoration: none;
+    color: white;
+    font-family: "Zen Maru Gothic", sans-serif;
+    font-weight: 700;
+    text-align: center;
+    font-size: x-large;
+  }
+
+  .home-link {
+    position: relative;
+    width: 100%;
+    height: 10%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-left: 25%;
+  }
+
+  .nav-items {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1px;
     padding-top: 5%;
     padding-bottom: 5%;
-    color: aliceblue;
   }
 
-  a:hover {
-    background-color: rgba(85, 85, 85, 0.8);
-    transition: background-color 0.2s ease;
+  .link {
+    width: 100%;
+    height: 3rem;
+    transition: backdrop-filter 0.2s ease;
   }
 
-  .separator {
-    padding: 5%;
+  .link a {
+    transition: color 0.2s ease;
   }
 
-  @media (max-width: 768px) {
-    .navbar {
-      width: 100%;
-    }
+  .link:hover {
+    backdrop-filter: invert(100%);
+  }
+
+  .link:hover a {
+    color: black;
+  }
+
+  .hamburger-menu {
+    width: 100%;
+    height: 100%;
+    font-size: clamp(0.5rem, 1.5rem, 5rem);
+    color: white;
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+
+  .hamburger-container:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+    filter: invert(100%);
   }
 </style>
