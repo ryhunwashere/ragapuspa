@@ -1,3 +1,19 @@
+@font-face {
+  font-display: swap; 
+  font-family: 'Zen Maru Gothic';
+  font-style: normal;
+  font-weight: 400;
+  src: url('/fonts/zenmaru/zen-maru-gothic-v19-latin-regular.woff2') format('woff2');
+}
+
+@font-face {
+  font-display: swap;
+  font-family: 'Zen Maru Gothic';
+  font-style: normal;
+  font-weight: 700;
+  src: url('/fonts/zenmaru/zen-maru-gothic-v19-latin-700.woff2') format('woff2'); 
+}
+
 * {
   box-sizing: border-box;
   margin: 0;

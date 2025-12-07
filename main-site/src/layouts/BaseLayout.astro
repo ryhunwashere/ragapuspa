@@ -1,6 +1,7 @@
 ---
 import Navbar from "@components/global/Navbar.astro";
 import Footer from "@components/global/Footer.astro";
+
 import { ClientRouter } from "astro:transitions";
 
 import "@styles/global.css";
@@ -19,12 +20,6 @@ const { title = "Page", showFooter = true } = Astro.props;
 <html lang="en">
   <head>
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700&display=swap"
-      rel="stylesheet"
-    />
     <meta name="robots" content="noindex, nofollow" />
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -34,10 +29,46 @@ const { title = "Page", showFooter = true } = Astro.props;
   </head>
 
   <body>
+    <div id="transition-overlay"></div>
     <Navbar />
     <main>
       <slot />
     </main>
     {showFooter && <Footer />}
+
+    <script>
+      const overlay = document.getElementById(
+        "transition-overlay"
+      ) as HTMLElement;
+
+      window.addEventListener("astro:before-navigate", () => {
+        overlay.classList.add("visible");
+      });
+
+      window.addEventListener("astro:after-navigate", () => {
+        overlay.classList.remove("visible");
+      });
+    </script>
+
+    <style>
+      #transition-overlay {
+        position: fixed;
+        inset: 0;
+        background: black;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 200ms ease;
+        z-index: 99999;
+      }
+
+      #transition-overlay.visible {
+        opacity: 0.35;
+        pointer-events: all;
+      }
+
+      html {
+        view-transition-name: page;
+      }
+    </style>
   </body>
 </html>
