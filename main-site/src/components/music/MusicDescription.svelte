@@ -59,7 +59,7 @@
   }
 
   .release-title {
-    padding-top: 10%;
+    padding-top: 8%;
     letter-spacing: -3px;
     font-size: clamp(4rem, 1.25vw, 8rem);
   }
@@ -67,12 +67,12 @@
   .description {
     overflow-y: auto;
     padding-right: 10%;
-    padding-top: 2rem;
-    padding-bottom: 1rem;
+    padding-top: 1rem;
+    padding-bottom: 3.8rem;
     mask-image: linear-gradient(
       to bottom,
       transparent 0%,
-      black 15%,
+      black 10%,
       black 70%,
       transparent 100%
     );
