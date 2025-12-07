@@ -15,41 +15,47 @@ import MusicDescription from "@components/music/MusicDescription.svelte";
 </div>
 
 <script is:inline>
-  const MOBILE_WIDTH = 768;
-  let isMobile = window.innerWidth <= MOBILE_WIDTH;
-
-  // Hidden by default on mobile, visible on desktop
-  let isHidden = isMobile;
-
-  function transformDescContainer(hidden, mobile) {
-    if (mobile) return hidden ? "translateY(90%)" : "translateY(0%)";
-    return hidden ? "translateX(-90%)" : "translateX(0%)";
-  }
-
-  function applyUI(descContainer, hideButton) {
-    descContainer.style.transform = transformDescContainer(isHidden, isMobile);
-    hideButton.classList.toggle("hidden", isHidden);
-  }
-
-  const hideButton = document.getElementById("hideBtn");
-  const descContainer = document.getElementById("desc");
-
-  // Initial UI rendering
-  applyUI(descContainer, hideButton);
-
-  hideButton.addEventListener("click", () => {
-    isHidden = !isHidden;
-    applyUI(descContainer, hideButton);
-  });
+  function initMusicDesc() {
+    const MOBILE_WIDTH = 768;
+    let isMobile = window.innerWidth <= MOBILE_WIDTH;
   
-  window.addEventListener("resize", () => {
-    const newIsMobile = window.innerWidth <= MOBILE_WIDTH;
-
-    if (newIsMobile !== isMobile) {
-      isMobile = newIsMobile;
-      applyUI(descContainer, hideButton);
+    // Hidden by default on mobile, visible on desktop
+    let isHidden = isMobile;
+  
+    function transformDescContainer(hidden, mobile) {
+      if (mobile) return hidden ? "translateY(90%)" : "translateY(0%)";
+      return hidden ? "translateX(-90%)" : "translateX(0%)";
     }
-  });
+  
+    function applyUI(descContainer, hideButton) {
+      descContainer.style.transform = transformDescContainer(isHidden, isMobile);
+      hideButton.classList.toggle("hidden", isHidden);
+    }
+  
+    const hideButton = document.getElementById("hideBtn");
+    const descContainer = document.getElementById("desc");
+  
+    // Initial UI rendering
+    applyUI(descContainer, hideButton);
+  
+    hideButton.addEventListener("click", () => {
+      isHidden = !isHidden;
+      applyUI(descContainer, hideButton);
+    });
+    
+    window.addEventListener("resize", () => {
+      const newIsMobile = window.innerWidth <= MOBILE_WIDTH;
+  
+      if (newIsMobile !== isMobile) {
+        isMobile = newIsMobile;
+        applyUI(descContainer, hideButton);
+      }
+    });
+  }
+  
+  initMusicDesc();
+
+  document.addEventListener("astro:after-swap", initMusicDesc);
 </script>
 
 <style>
@@ -68,6 +74,7 @@ import MusicDescription from "@components/music/MusicDescription.svelte";
     justify-content: space-between;
     overflow: hidden;
     transition: transform 0.3s ease;
+    padding-left: 2.5%;
     padding-right: 5%;
     flex-direction: row;
   }
