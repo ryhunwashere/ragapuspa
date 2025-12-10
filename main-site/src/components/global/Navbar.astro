@@ -168,13 +168,34 @@ const navItems = ["About", "Music", "Album1", "Gallery"];
   }
 
   @media (max-width: 1024px) {
+    .nav-items {
+      padding-top: 20%;
+      gap: 5vh;
+    }
+
+    .site-navbar {
+      width: 100%;
+    }
+
+    .menu-list {
+      width: 100%;
+    }
+
+    .menu-list a {
+      font-size: 4rem;
+    }
+
+    .home-link {
+      padding-left: 0%;
+    }
+
     .hamburger-menu {
       height: 100px;
       width: 100px;
     }
 
     .hamburger-menu button {
-      font-size: 5rem;
+      font-size: 4rem;
     }
   }
 
@@ -186,6 +207,12 @@ const navItems = ["About", "Music", "Album1", "Gallery"];
 
     .hamburger-menu button {
       font-size: 3rem;
+    }
+  }
+
+  @media (max-width: 500px) {
+    .menu-list a {
+      font-size: 2rem;
     }
   }
 </style>
