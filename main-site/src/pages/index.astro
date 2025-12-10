@@ -1,7 +1,6 @@
 ---
 import BaseLayout from "@layouts/BaseLayout.astro";
 
-// import AlbumPromoScreen from "@components/index/AlbumPromoScreen.svelte";
 import SplitText from "@components/index/SplitText.svelte";
 
 const title = "Home";
@@ -12,11 +11,11 @@ const title = "Home";
     <div class="hero-video-wrapper">
       <video class="hero-video" autoplay muted loop crossorigin="anonymous">
         <source
-        src="https://res.cloudinary.com/djow2j0qk/video/upload/v1765122068/Shizuha_Loop_g6tx38.webm"
-        type="video/webm"
+          src="https://res.cloudinary.com/djow2j0qk/video/upload/v1765122068/Shizuha_Loop_g6tx38.webm"
+          type="video/webm"
         />
       </video>
-      <div class="hero-overlay" />
+      <div class="hero-overlay"></div>
       <div class="hero-caption">
         <SplitText text="Ragapuspa" client:load />
       </div>
@@ -38,7 +37,6 @@ const title = "Home";
   <a href="/album1">Album 1 Page</a>
 
   <div style="height: 500px;"></div>
-  <!-- <AlbumPromoScreen client:load /> -->
 </BaseLayout>
 
 <style>
@@ -85,7 +83,7 @@ const title = "Home";
     color: rgb(255, 255, 255);
     z-index: 10;
     font-family: "Zen Maru Gothic", sans-serif;
-    font-size: 9rem;
+    font-size: 8rem;
     font-style: normal;
     text-shadow: 6px 4px 9px black;
     line-height: 1;
@@ -105,7 +103,7 @@ const title = "Home";
     background-color: rgba(255, 255, 255, 1);
     backdrop-filter: invert(0%);
     border-radius: 8px;
-    font-size: 3rem;
+    font-size: 4rem;
     padding: 1rem;
     line-height: 1;
     color: rgb(0, 0, 0);
@@ -151,7 +149,7 @@ const title = "Home";
 
     .hero-caption {
       transform: translateY(-15vh);
-      font-size: 8rem
+      font-size: 8rem;
     }
 
     .hero-slogan,
@@ -162,6 +160,7 @@ const title = "Home";
     .music-button {
       transform: translateY(10vh);
       font-size: 4rem;
+      padding: 1rem;
     }
 
     .music-button-container {
@@ -171,12 +170,19 @@ const title = "Home";
 
   @media (max-width: 767px) {
     .hero-caption {
-      font-size: 4rem;
+      font-size: 6rem;
     }
 
     .music-button {
-      transform: translateY(0vh);
+      transform: translateY(5vh);
       font-size: 2rem;
+      padding: 1rem;
+    }
+  }
+
+  @media (max-width: 541px) {
+    .hero-caption {
+      font-size: 4rem;
     }
   }
 </style>
