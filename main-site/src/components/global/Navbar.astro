@@ -2,8 +2,8 @@
 const navItems = ["About", "Music", "Album1", "Gallery"];
 ---
 
-<div class="hamburger-container">
-  <button id="menuBtn" class="hamburger-menu" aria-label="Menu"> ☰ </button>
+<div class="hamburger-menu">
+  <button id="menuBtn" aria-label="Menu"> ☰ </button>
 </div>
 
 <nav id="siteNavbar" class="site-navbar">
@@ -38,14 +38,14 @@ const navItems = ["About", "Music", "Album1", "Gallery"];
 
     const hideNavbar = () => {
       if (isVisible) {
-        siteNavbar.style.transform = "translateX(-150%)";
+        siteNavbar.style.transform = "translateX(-100%)";
         isVisible = false;
       }
     };
 
     const toggleMenu = () => {
       siteNavbar.style.transform = isVisible
-        ? "translateX(-150%)"
+        ? "translateX(-100%)"
         : "translateX(0%)";
       isVisible = !isVisible;
     };
@@ -67,7 +67,7 @@ const navItems = ["About", "Music", "Album1", "Gallery"];
 </script>
 
 <style>
-  .hamburger-container {
+  .hamburger-menu {
     z-index: 200;
     display: flex;
     justify-content: center;
@@ -81,6 +81,23 @@ const navItems = ["About", "Music", "Album1", "Gallery"];
     transform: translateX(25%) translateY(25%);
   }
 
+  .hamburger-menu button {
+    line-height: 1;
+    margin-bottom: 4px;
+    width: 100%;
+    height: 100%;
+    font-size: 2rem;
+    color: white;
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+
+  .hamburger-menu:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+    filter: invert(100%);
+  }
+
   .site-navbar {
     z-index: 100;
     position: fixed;
@@ -89,7 +106,7 @@ const navItems = ["About", "Music", "Album1", "Gallery"];
     background-color: rgba(0, 0, 0, 0.8);
     backdrop-filter: blur(12px) invert(100%);
     transform: translateX(-100%);
-    transition: transform 0.5s ease;
+    transition: transform 0.3s ease;
   }
 
   .menu-list {
@@ -150,18 +167,52 @@ const navItems = ["About", "Music", "Album1", "Gallery"];
     color: black;
   }
 
-  .hamburger-menu {
-    width: 100%;
-    height: 100%;
-    font-size: clamp(0.5rem, 1.5rem, 5rem);
-    color: white;
-    background: none;
-    border: none;
-    cursor: pointer;
+  @media (max-width: 1024px) {
+    .nav-items {
+      padding-top: 20%;
+      gap: 5vh;
+    }
+
+    .site-navbar {
+      width: 100%;
+    }
+
+    .menu-list {
+      width: 100%;
+    }
+
+    .menu-list a {
+      font-size: 4rem;
+    }
+
+    .home-link {
+      padding-left: 0%;
+    }
+
+    .hamburger-menu {
+      height: 100px;
+      width: 100px;
+    }
+
+    .hamburger-menu button {
+      font-size: 4rem;
+    }
   }
 
-  .hamburger-container:hover {
-    background-color: rgba(0, 0, 0, 0.8);
-    filter: invert(100%);
+  @media (max-width: 767px) {
+    .hamburger-menu {
+      height: 70px;
+      width: 70px;
+    }
+
+    .hamburger-menu button {
+      font-size: 3rem;
+    }
+  }
+
+  @media (max-width: 500px) {
+    .menu-list a {
+      font-size: 2rem;
+    }
   }
 </style>

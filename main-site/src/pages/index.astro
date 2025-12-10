@@ -1,7 +1,6 @@
 ---
 import BaseLayout from "@layouts/BaseLayout.astro";
 
-import AlbumPromoScreen from "@components/index/AlbumPromoScreen.svelte";
 import SplitText from "@components/index/SplitText.svelte";
 
 const title = "Home";
@@ -16,18 +15,15 @@ const title = "Home";
           type="video/webm"
         />
       </video>
-      <div class="hero-overlay" />
+      <div class="hero-overlay"></div>
       <div class="hero-caption">
-        <SplitText text="Ragapuspa" client:idle />
+        <SplitText text="Ragapuspa" client:load />
       </div>
       <div class="music-button-container">
         <a class="music-button" href="/music">Music</a>
       </div>
     </div>
 
-    <div class="hero-title">
-      <h1>Ragapuspa</h1>
-    </div>
     <div class="hero-slogan">
       <h2>Like-minded creative people create together.</h2>
     </div>
@@ -41,7 +37,6 @@ const title = "Home";
   <a href="/album1">Album 1 Page</a>
 
   <div style="height: 500px;"></div>
-  <AlbumPromoScreen client:load />
 </BaseLayout>
 
 <style>
@@ -60,8 +55,8 @@ const title = "Home";
     height: auto;
     display: flex;
     justify-content: center;
-    align-items: center;
     overflow: hidden;
+    align-items: center;
   }
 
   .hero-video {
@@ -84,20 +79,20 @@ const title = "Home";
 
   .hero-caption {
     position: absolute;
-    transform: translateY(-50%);
     display: block;
     color: rgb(255, 255, 255);
     z-index: 10;
     font-family: "Zen Maru Gothic", sans-serif;
-    font-size: 10rem;
+    font-size: 8rem;
     font-style: normal;
     text-shadow: 6px 4px 9px black;
+    line-height: 1;
+    transform: translateY(-15vh);
   }
 
   .music-button-container {
+    transform: translateY(15vh);
     position: absolute;
-    transform: translateY(100%);
-    padding-bottom: -50%;
     opacity: 0;
     animation: fadeIn 1.5s ease forwards;
     animation-delay: 2.5s;
@@ -108,9 +103,9 @@ const title = "Home";
     background-color: rgba(255, 255, 255, 1);
     backdrop-filter: invert(0%);
     border-radius: 8px;
-    font-size: 5rem;
+    font-size: 4rem;
     padding: 1rem;
-    line-height: 1.2;
+    line-height: 1;
     color: rgb(0, 0, 0);
     text-decoration: none;
     font-weight: bold;
@@ -139,7 +134,7 @@ const title = "Home";
     padding: 0 1rem;
   }
 
-  @media (max-width: 768px) {
+  @media (max-width: 1024px) {
     .hero-video-wrapper {
       width: 100%;
       height: 100vh;
@@ -153,12 +148,41 @@ const title = "Home";
     }
 
     .hero-caption {
+      transform: translateY(-15vh);
       font-size: 8rem;
     }
 
     .hero-slogan,
     .hero-description {
       font-size: larger;
+    }
+
+    .music-button {
+      transform: translateY(10vh);
+      font-size: 4rem;
+      padding: 1rem;
+    }
+
+    .music-button-container {
+      transform: translateY(5vh);
+    }
+  }
+
+  @media (max-width: 767px) {
+    .hero-caption {
+      font-size: 6rem;
+    }
+
+    .music-button {
+      transform: translateY(5vh);
+      font-size: 2rem;
+      padding: 1rem;
+    }
+  }
+
+  @media (max-width: 541px) {
+    .hero-caption {
+      font-size: 4rem;
     }
   }
 </style>
