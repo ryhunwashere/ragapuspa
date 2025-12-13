@@ -1,3 +1,6 @@
+# vercel.json is automatically generated on build
+vercel.json
+
 # build output
 dist/
 

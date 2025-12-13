@@ -1,11 +1,12 @@
 {
-  "name": "main-site",
+  "name": "ragapuspa",
   "type": "module",
   "version": "0.0.1",
   "scripts": {
     "generate-gallery": "node src/scripts/generateGalleryItems.ts",
     "generate-music": "node src/scripts/generateMusicItems.ts",
-    "build": "npm run generate-gallery && astro build",
+    "generate-vercel": "node src/scripts/generateVercelConfig.ts",
+    "build": "npm run generate-gallery && npm run generate-vercel && astro build",
     "dev": "astro dev",
     "preview": "astro preview",
     "astro": "astro"
