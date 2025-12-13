@@ -33,13 +33,6 @@ async function generateGalleryItems() {
     }));
 
   await writeFile(
-    "./public/gallery_items.json",
-    JSON.stringify(images, null, 2),
-    "utf-8"
-  );
-  console.log(`./public/gallery_items.json generated with ${images.length} items.`);
-
-  await writeFile(
     "./src/data/gallery_items.json",
     JSON.stringify(images, null, 2),
     "utf-8"

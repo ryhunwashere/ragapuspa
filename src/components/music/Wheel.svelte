@@ -3,9 +3,7 @@
   import { gsap } from "gsap";
   import { onMount } from "svelte";
 
-  import musicCards from "@data/cards.json";
-
-  const cards: CardData[] = musicCards;
+  export let cards: CardData[];
 
   export let initialSongSlug: string | undefined;
 
@@ -127,7 +125,7 @@
     user-select: none;
   }
 
-  @media (max-width:763px) {
+  @media (max-width: 763px) {
     .wheel {
       visibility: hidden;
     }

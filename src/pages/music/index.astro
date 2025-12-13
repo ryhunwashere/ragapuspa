@@ -1,14 +1,5 @@
 ---
-import musicCards from "@data/cards.json";
-import type { CardData } from "@stores/selectedCard.ts";
+import { firstSongSlug } from "@root/src/scripts/generateVercelConfig";
 
-const cards: CardData[] = musicCards;
-const firstSongSlug = cards[0]?.slug;
-
-if (firstSongSlug) {
-  const targetUrl = `/music/${firstSongSlug}`;
-  return Astro.redirect(targetUrl, 301);
-}
-
-return Astro.redirect("/", 302);
+return Astro.redirect(`/music/${firstSongSlug}`, 301);
 ---

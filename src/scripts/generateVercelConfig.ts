@@ -17,7 +17,7 @@ type VercelConfig = {
   }[];
 }
 
-const firstSongSlug: string = cards[0].slug;
+export const firstSongSlug: string = cards[0].slug;
 
 const newConfig: VercelConfig = {
   $schema: "https://openapi.vercel.sh/vercel.json",
@@ -36,7 +36,7 @@ const newConfig: VercelConfig = {
     {
       source: "/music",
       destination: `/music/${firstSongSlug}`,
-      permanent: false
+      permanent: true
     }
   ]
 };
