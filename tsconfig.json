@@ -5,12 +5,14 @@
   "compilerOptions": {
     "forceConsistentCasingInFileNames": true,
     "strict": true,
+    "resolveJsonModule": true,
     "plugins": [
       {
         "name": "@astrojs/ts-plugin"
       }
     ],
     "paths": {
+      "@root/*": ["./*"],
       "@components/*": ["./src/components/*"],
       "@data/*": ["./src/data/*"],
       "@layouts/*": ["./src/layouts/*"],

@@ -1,11 +1,12 @@
 {
-  "name": "main-site",
+  "name": "ragapuspa",
   "type": "module",
   "version": "0.0.1",
   "scripts": {
     "generate-gallery": "node src/scripts/generateGalleryItems.ts",
     "generate-music": "node src/scripts/generateMusicItems.ts",
-    "build": "npm run generate-gallery && astro build",
+    "generate-vercel": "node src/scripts/generateVercelConfig.ts",
+    "build": "npm run generate-gallery && npm run generate-vercel && astro build",
     "dev": "astro dev",
     "preview": "astro preview",
     "astro": "astro"
@@ -15,10 +16,10 @@
     "@astrojs/ts-plugin": "^1.10.6",
     "@vercel/speed-insights": "^1.2.0",
     "astro": "^5.16.0",
-    "cloudinary": "^2.6.1",
-    "dotenv": "^16.5.0",
     "gsap": "^3.13.0",
     "svelte": "^5.33.17",
+    "cloudinary": "^2.6.1",
+    "dotenv": "^16.5.0",
     "typescript": "^5.8.3"
   }
 }

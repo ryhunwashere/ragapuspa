@@ -7,6 +7,8 @@
     imagePublicId: string;
   }
 
+  export let allImages: ImageItem[];
+
   export let initial: ImageItem[] = [];
 
   let images: ImageItem[] = [...initial];
@@ -16,17 +18,15 @@
   let isSmallScreen: boolean = false;
 
   // Check screen size once on mount
-  onMount(() => {
-    isSmallScreen = window.matchMedia("(max-width: 768px)").matches;
-  });
+  onMount(() =>
+    isSmallScreen = window.matchMedia("(max-width: 768px)").matches
+  );
 
   async function loadMore() {
     if (loading) return;
     loading = true;
 
-    const all = await fetch("/gallery_items.json").then((r) => r.json());
-
-    const nextChunk = all.slice(
+    const nextChunk = allImages.slice(
       chunkIndex * chunkSize,
       (chunkIndex + 1) * chunkSize
     );
