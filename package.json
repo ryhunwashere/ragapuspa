@@ -3,9 +3,8 @@
   "type": "module",
   "version": "0.0.1",
   "scripts": {
-    "generate-gallery": "node src/scripts/generateGalleryItems.ts",
-    "generate-music": "node src/scripts/generateMusicItems.ts",
-    "generate-vercel": "node src/scripts/generateVercelConfig.ts",
+    "generate-gallery": "node src/scripts/generate-gallery.ts",
+    "generate-vercel": "node src/scripts/generate-vercel.ts",
     "build": "npm run generate-gallery && npm run generate-vercel && astro build",
     "dev": "astro dev",
     "preview": "astro preview",
@@ -19,7 +18,7 @@
     "gsap": "^3.13.0",
     "svelte": "^5.33.17",
     "cloudinary": "^2.6.1",
-    "dotenv": "^16.5.0",
+    "dotenv": "^17.2.3",
     "typescript": "^5.8.3"
   }
 }

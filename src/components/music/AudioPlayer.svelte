@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { selectedCard, isPlaying } from "@stores/selectedCard.ts";
+  import { selectedCard, isPlaying } from "@stores/selected-card.ts";
   import { onDestroy } from "svelte";
 
   let audioEl: HTMLAudioElement | undefined;

@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { isPlaying } from "@stores/selectedCard.ts";
+  import { isPlaying } from "@stores/selected-card.ts";
 
   function handleMouseClick() {
     isPlaying.update((playing) => !playing);

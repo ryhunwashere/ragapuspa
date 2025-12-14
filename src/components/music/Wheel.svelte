@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { selectedCard, isPlaying, type CardData } from "@stores/selectedCard.ts";
+  import { selectedCard, isPlaying, type CardData } from "@stores/selected-card.ts";
   import { gsap } from "gsap";
   import { onMount } from "svelte";
 
