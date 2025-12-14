@@ -2,6 +2,7 @@
 import BaseLayout from "@layouts/BaseLayout.astro";
 
 import SplitText from "@components/index/SplitText.svelte";
+import LinkButton from "@components/global/LinkButton.svelte";
 
 const title = "Home";
 ---
@@ -20,12 +21,12 @@ const title = "Home";
         <SplitText text="Ragapuspa" client:load />
       </div>
       <div class="music-button-container">
-        <a class="music-button" href="/music">Music</a>
+        <LinkButton href="/music" text="Music" />
       </div>
     </div>
 
     <div class="hero-slogan">
-      <h2>Like-minded creative people create together.</h2>
+      <h1>Like-minded creative people create together.</h1>
     </div>
     <div class="hero-description">
       <p>
@@ -94,28 +95,8 @@ const title = "Home";
     transform: translateY(15vh);
     position: absolute;
     opacity: 0;
-    animation: fadeIn 1s ease forwards;
-    animation-delay: 4s;
-  }
-
-  .music-button {
-    display: block;
-    background-color: rgba(255, 255, 255, 1);
-    backdrop-filter: invert(0%);
-    border-radius: 8px;
-    font-size: 4rem;
-    padding: 1rem;
-    line-height: 1;
-    color: rgb(0, 0, 0);
-    text-decoration: none;
-    font-weight: bold;
-    transition: background-color 0.3s ease;
-  }
-
-  .music-button:hover {
-    background-color: rgba(0, 0, 0, 0.7);
-    backdrop-filter: invert(30%);
-    color: rgb(255, 255, 255);
+    animation: fadeIn 0.5s ease forwards;
+    animation-delay: 3s;
   }
 
   @keyframes fadeIn {
@@ -157,12 +138,6 @@ const title = "Home";
       font-size: larger;
     }
 
-    .music-button {
-      transform: translateY(10vh);
-      font-size: 4rem;
-      padding: 1rem;
-    }
-
     .music-button-container {
       transform: translateY(5vh);
     }
@@ -171,12 +146,6 @@ const title = "Home";
   @media (max-width: 767px) {
     .hero-caption {
       font-size: 6rem;
-    }
-
-    .music-button {
-      transform: translateY(5vh);
-      font-size: 2rem;
-      padding: 1rem;
     }
   }
 
