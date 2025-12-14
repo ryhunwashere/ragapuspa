@@ -8,14 +8,23 @@
 
   onMount(() => {
     const chars = container.querySelectorAll(".char");
-    gsap.from(chars, {
+    const startingHeight = -(screen.height / 2);
+    console.log("starting height: " + startingHeight);
+
+    container.style.transform = `translateY: ${startingHeight}`;
+
+    gsap.fromTo(chars, {
       opacity: 0,
-      y: -500,
-      duration: 1,
-      ease: "power3.out",
+      y: startingHeight,
+    },
+    {
+      opacity: 1,
+      y: 0,
       stagger: 0.1,
-      delay: 0.5
-    });
+      delay: 0.5,
+      ease: "power4.out"
+    }
+  );
   });
 </script>
 
@@ -24,6 +33,8 @@
     display: inline-block;
     white-space: pre;
     font-weight: 700;
+    opacity: 0;
+    transition: opacity 0s, transform 0s;
   }
 </style>
 
