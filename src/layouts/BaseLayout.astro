@@ -29,46 +29,10 @@ const { title = "Page", showFooter = true } = Astro.props;
   </head>
 
   <body>
-    <div id="transition-overlay"></div>
     <Navbar />
     <main>
       <slot />
     </main>
     {showFooter && <Footer />}
-
-    <script>
-      const overlay = document.getElementById(
-        "transition-overlay"
-      ) as HTMLElement;
-
-      window.addEventListener("astro:before-navigate", () => {
-        overlay.classList.add("visible");
-      });
-
-      window.addEventListener("astro:after-navigate", () => {
-        overlay.classList.remove("visible");
-      });
-    </script>
-
-    <style>
-      #transition-overlay {
-        position: fixed;
-        inset: 0;
-        background: black;
-        opacity: 0;
-        pointer-events: none;
-        transition: opacity 200ms ease;
-        z-index: 99999;
-      }
-
-      #transition-overlay.visible {
-        opacity: 0.35;
-        pointer-events: all;
-      }
-
-      html {
-        view-transition-name: page;
-      }
-    </style>
   </body>
 </html>

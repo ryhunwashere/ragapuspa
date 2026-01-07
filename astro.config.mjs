@@ -1,6 +1,6 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
-import { firstSongSlug } from './src/scripts/generateVercelConfig';
+import { firstSongSlug } from './src/scripts/generate-vercel';
 
 import svelte from '@astrojs/svelte';
 

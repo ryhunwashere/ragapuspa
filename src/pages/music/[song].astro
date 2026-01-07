@@ -7,7 +7,7 @@ import PlaybackButton from "@components/music/PlaybackButton.svelte";
 import AudioPlayer from "@components/music/AudioPlayer.svelte";
 import MusicDescriptionWrapper from "@components/music/MusicDescriptionWrapper.astro";
 import cards from "@data/cards.json";
-import type { CardData } from "@stores/selectedCard.ts";
+import type { CardData } from "@stores/selected-card.ts";
 
 const { song } = Astro.params;
 
@@ -68,7 +68,7 @@ const title = "Music";
     display: none;
   }
 
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: 1024px) {
     .hide-button {
       width: 10%;
       height: 100%;
@@ -78,7 +78,7 @@ const title = "Music";
     }
   }
 
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 1024px) {
     .music-selector {
       flex-direction: column;
     }
