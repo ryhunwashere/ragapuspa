@@ -33,3 +33,5 @@ pnpm-debug.log*
 
 # Gallery and music item urls. Generated on each build
 gallery_items.json
+
+package-lock.json
