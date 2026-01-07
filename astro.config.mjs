@@ -1,8 +1,9 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
-import { firstSongSlug } from './src/scripts/generate-vercel';
-
 import svelte from '@astrojs/svelte';
+import cards from './src/data/cards.json';
+
+const firstSongSlug = cards[0].slug;
 
 // https://astro.build/config
 export default defineConfig({

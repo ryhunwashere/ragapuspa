@@ -4,8 +4,7 @@
   "version": "0.0.1",
   "scripts": {
     "generate-gallery": "node src/scripts/generate-gallery.ts",
-    "generate-vercel": "node src/scripts/generate-vercel.ts",
-    "build": "npm run generate-gallery && npm run generate-vercel && astro build",
+    "build": "npm run generate-gallery && astro build",
     "dev": "astro dev",
     "preview": "astro preview",
     "astro": "astro"
@@ -15,10 +14,13 @@
     "@astrojs/ts-plugin": "^1.10.6",
     "@vercel/speed-insights": "^1.2.0",
     "astro": "^5.16.0",
-    "gsap": "^3.13.0",
-    "svelte": "^5.33.17",
     "cloudinary": "^2.6.1",
     "dotenv": "^17.2.3",
+    "gsap": "^3.13.0",
+    "svelte": "^5.33.17",
     "typescript": "^5.8.3"
+  },
+  "devDependencies": {
+    "wrangler": "^4.57.0"
   }
 }
