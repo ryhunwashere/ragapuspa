@@ -16,7 +16,7 @@ import MusicDescription from "@components/music/MusicDescription.svelte";
 
 <script is:inline>
   function initMusicDesc() {
-    const MOBILE_WIDTH = 768;
+    const MOBILE_WIDTH = 1024;
     let isMobile = window.innerWidth <= MOBILE_WIDTH;
   
     // Hidden by default on mobile, visible on desktop
@@ -116,7 +116,7 @@ import MusicDescription from "@components/music/MusicDescription.svelte";
     transform: scaleX(-1);
   }
 
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: 1024px) {
     .hide-button-container {
       width: 10%;
       height: 100%;
@@ -126,7 +126,7 @@ import MusicDescription from "@components/music/MusicDescription.svelte";
     }
   }
 
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 1024px) {
     .desc-container {
       width: 100%;
       height: 100%;
