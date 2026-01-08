@@ -22,10 +22,17 @@ jobs:
 
       - name: Build project
         run: npm run build
+        env:
+          CLOUDINARY_API_KEY: ${{ secrets.CLOUDINARY_API_KEY }}
+          CLOUDINARY_API_SECRET: ${{ secrets.CLOUDINARY_API_SECRET }}
+          CLOUDINARY_CLOUD_NAME: ${{ vars.CLOUDINARY_CLOUD_NAME }}
+          CLOUDINARY_FOLDER_GALLERY: ${{ vars.CLOUDINARY_FOLDER_GALLERY }}
+          CLOUDINARY_FOLDER_MUSIC_TRACKS: ${{ vars.CLOUDINARY_FOLDER_MUSIC_TRACKS }}
+          CLOUDINARY_FOLDER_MUSIC_ARTWORKS: ${{ vars.CLOUDINARY_FOLDER_MUSIC_ARTWORKS }}
 
       - name: Deploy to Cloudflare Workers with Wrangler
         uses: cloudflare/wrangler-action@v3.14.1
-        with:
+        env:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           command: pages deploy dist --project-name=ragapuspa

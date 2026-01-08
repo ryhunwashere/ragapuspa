@@ -21,8 +21,7 @@ export async function fetchCloudinaryUrls(folderPath: string, type: string) {
       publicId: item.public_id,
       uploadedAt: item.uploaded_at,
     }));
-  } catch (err) {
-    console.error(`Failed to fetch from Cloudinary folder "${folderPath}":`, err);
-    return [];
+  } catch (err: any) {
+    throw new Error(`Failed to fetch from Cloudinary folder "${folderPath}":`, err);
   }
 }

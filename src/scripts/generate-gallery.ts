@@ -17,10 +17,8 @@ function transform(url: string, width: number, quality: string) {
 async function generateGalleryItems() {
   const galleryFolder = process.env.CLOUDINARY_FOLDER_GALLERY;
 
-  if (!galleryFolder) {
-    console.error("CLOUDINARY_FOLDER_GALLERY is not defined in your .env file.");
-    return;
-  }
+  if (!galleryFolder)
+    throw new Error("CLOUDINARY_FOLDER_GALLERY is not defined in your environment variable.");
 
   const fetchedImages = await fetchCloudinaryUrls(galleryFolder, "image");
 
