@@ -1,5 +1,5 @@
 {
   "name": "ragapuspa",
-  "compatibility_date": "2026-01-07", // Update to the day you deploy
+  "compatibility_date": "2026-01-08",
   "pages_build_output_dir": "./dist"
 }
