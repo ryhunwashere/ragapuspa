@@ -20,15 +20,17 @@ jobs:
       - name: Install dependencies
         run: npm install
 
+      - name: Create .env file for script
+        run: |
+          echo "CLOUDINARY_API_KEY=${{ secrets.CLOUDINARY_API_KEY }}" >> .env
+          echo "CLOUDINARY_API_SECRET=${{ secrets.CLOUDINARY_API_SECRET }}" >> .env
+          echo "CLOUDINARY_CLOUD_NAME=${{ vars.CLOUDINARY_CLOUD_NAME }}" >> .env
+          echo "CLOUDINARY_FOLDER_GALLERY=${{ vars.CLOUDINARY_FOLDER_GALLERY }}" >> .env
+          echo "CLOUDINARY_FOLDER_MUSIC_TRACKS=${{ vars.CLOUDINARY_FOLDER_MUSIC_TRACKS }}" >> .env
+          echo "CLOUDINARY_FOLDER_MUSIC_ARTWORKS=${{ vars.CLOUDINARY_FOLDER_MUSIC_ARTWORKS }}" >> .env
+
       - name: Build project
         run: npm run build
-        env:
-          CLOUDINARY_API_KEY: ${{ secrets.CLOUDINARY_API_KEY }}
-          CLOUDINARY_API_SECRET: ${{ secrets.CLOUDINARY_API_SECRET }}
-          CLOUDINARY_CLOUD_NAME: ${{ vars.CLOUDINARY_CLOUD_NAME }}
-          CLOUDINARY_FOLDER_GALLERY: ${{ vars.CLOUDINARY_FOLDER_GALLERY }}
-          CLOUDINARY_FOLDER_MUSIC_TRACKS: ${{ vars.CLOUDINARY_FOLDER_MUSIC_TRACKS }}
-          CLOUDINARY_FOLDER_MUSIC_ARTWORKS: ${{ vars.CLOUDINARY_FOLDER_MUSIC_ARTWORKS }}
 
       - name: Deploy to Cloudflare Workers with Wrangler
         uses: cloudflare/wrangler-action@v3.14.1
