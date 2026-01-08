@@ -1,5 +1,6 @@
 import { writeFile } from "fs/promises";
 import { fetchCloudinaryUrls } from "./cdn-urls-fetcher.ts";
+import "dotenv/config.js";
 
 const WIDTH_NORMAL = 640;
 const WIDTH_SMALL = 400;
