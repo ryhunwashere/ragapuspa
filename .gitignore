@@ -35,3 +35,5 @@ pnpm-debug.log*
 gallery_items.json
 
 package-lock.json
+
+worker-configuration.d.ts

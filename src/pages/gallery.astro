@@ -2,29 +2,15 @@
 import BaseLayout from "@layouts/BaseLayout.astro";
 import GalleryImages from "@components/gallery/GalleryImages.svelte";
 import getGalleryItems from "@scripts/generate-gallery";
-import type { CloudinaryConfig } from "@scripts/cdn-urls-fetcher";
+import { env } from "cloudflare:workers";
 
-const requiredEnvVars = [
-  "CLOUDINARY_CLOUD_NAME",
-  "CLOUDINARY_API_KEY",
-  "CLOUDINARY_API_SECRET",
-  "CLOUDINARY_FOLDER_GALLERY",
-  "CLOUDINARY_FOLDER_MUSIC_TRACKS",
-  "CLOUDINARY_FOLDER_MUSIC_ARTWORKS",
-];
-
-requiredEnvVars.forEach((name) => {
-  if (!process.env[name]) 
-    throw new Error(`Missing environment variable: ${name}.`);
-});
-
-const config: CloudinaryConfig = {
-  cloudName: process.env.CLOUDINARY_CLOUD_NAME as string,
-  apiKey: process.env.CLOUDINARY_API_KEY as string,
-  apiSecret: process.env.CLOUDINARY_API_SECRET as string,
-  galleryFolder: process.env.CLOUDINARY_FOLDER_GALLERY as string,
-  musicFolder: process.env.CLOUDINARY_FOLDER_MUSIC_TRACKS as string,
-  musicArtworksFolder: process.env.CLOUDINARY_FOLDER_MUSIC_ARTWORKS as string,
+const config = {
+  cloudName: env.CLOUDINARY_CLOUD_NAME,
+  apiKey: env.CLOUDINARY_API_KEY,
+  apiSecret: env.CLOUDINARY_API_SECRET,
+  galleryFolder: env.CLOUDINARY_FOLDER_GALLERY,
+  musicFolder: env.CLOUDINARY_FOLDER_MUSIC_TRACKS,
+  musicArtworksFolder: env.CLOUDINARY_FOLDER_MUSIC_ARTWORKS,
 };
 
 const allImages = await getGalleryItems(config);
