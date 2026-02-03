@@ -3,16 +3,14 @@
   "type": "module",
   "version": "0.0.1",
   "scripts": {
-    "generate-gallery": "tsx src/scripts/generate-gallery.ts",
-    "build": "npm run generate-gallery && astro build",
-    "dev": "astro dev",
+    "build": "astro build",
+    "dev": "wrangler pages dev ./dist",
     "preview": "astro preview",
     "astro": "astro"
   },
   "dependencies": {
     "@astrojs/svelte": "^7.2.2",
     "@astrojs/ts-plugin": "^1.10.6",
-    "@vercel/speed-insights": "^1.2.0",
     "astro": "^5.16.0",
     "cloudinary": "^2.6.1",
     "dotenv": "^17.2.3",
@@ -22,7 +20,6 @@
   },
   "devDependencies": {
     "@types/node": "^25.0.3",
-    "tsx": "^4.21.0",
     "wrangler": "^4.57.0"
   }
 }

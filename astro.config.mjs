@@ -7,7 +7,10 @@ const firstSongSlug = cards[0].slug;
 
 // https://astro.build/config
 export default defineConfig({
+  output: 'static',
+
   integrations: [svelte()],
+
   redirects: {
     '/music': {
       status: 301,

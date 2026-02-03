@@ -1,8 +1,20 @@
 ---
 import BaseLayout from "@layouts/BaseLayout.astro";
 import GalleryImages from "@components/gallery/GalleryImages.svelte"
+import getGalleryItems from "@scripts/generate-gallery";
+import type { CloudinaryConfig } from "@scripts/cdn-urls-fetcher";
 
-import allImages from "@data/gallery_items.json";
+const config: CloudinaryConfig = {
+  cloudName: import.meta.env.CLOUDINARY_CLOUD_NAME,
+  apiKey: import.meta.env.CLOUDINARY_API_KEY,
+  apiSecret: import.meta.env.CLOUDINARY_API_SECRET,
+  galleryFolder: import.meta.env.CLOUDINARY_FOLDER_GALLERY,
+  musicFolder: import.meta.env.CLOUDINARY_FOLDER_MUSIC_TRACKS,
+  musicArtworksFolder: import.meta.env.CLOUDINARY_FOLDER_MUSIC_ARTWORKS
+}
+
+const allImages = await getGalleryItems(config);
+
 const initialChunk = allImages.slice(0, 8);
 
 const title = "Gallery";
