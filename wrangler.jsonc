@@ -1,5 +1,14 @@
 {
   "name": "ragapuspa",
   "compatibility_date": "2026-01-25",
-  "pages_build_output_dir": "./dist"
+  "compatibility_flags": [
+    "nodejs_compat"
+  ],
+  "pages_build_output_dir": "./dist",
+  "vars": {
+    "CLOUDINARY_CLOUD_NAME": "djow2j0qk",
+    "CLOUDINARY_FOLDER_GALLERY": "ragapuspa/gallery",
+    "CLOUDINARY_FOLDER_MUSIC_TRACKS": "ragapuspa/music/tracks",
+    "CLOUDINARY_FOLDER_MUSIC_ARTWORKS": "ragapuspa/music/artworks"
+  }
 }

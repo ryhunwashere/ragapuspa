@@ -2,7 +2,7 @@
 import BaseLayout from "@layouts/BaseLayout.astro";
 import GalleryImages from "@components/gallery/GalleryImages.svelte";
 import getGalleryItems from "@scripts/generate-gallery";
-import { env } from "cloudflare:workers";
+const { env } = Astro.locals.runtime;
 
 const config = {
   cloudName: env.CLOUDINARY_CLOUD_NAME,
