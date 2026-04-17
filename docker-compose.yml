@@ -1,0 +1,9 @@
+services:
+  ragapuspa:
+    build: .
+    container_name: ragapuspa
+    ports:
+      - "4321:4321"
+    volumes:
+      - .:/app
+      - /app/node_modules
