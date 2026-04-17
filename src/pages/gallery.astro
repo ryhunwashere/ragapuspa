@@ -2,15 +2,14 @@
 import BaseLayout from "@layouts/BaseLayout.astro";
 import GalleryImages from "@components/gallery/GalleryImages.svelte";
 import getGalleryItems from "@scripts/generate-gallery";
-const { env } = Astro.locals.runtime;
 
 const config = {
-  cloudName: env.CLOUDINARY_CLOUD_NAME,
-  apiKey: env.CLOUDINARY_API_KEY,
-  apiSecret: env.CLOUDINARY_API_SECRET,
-  galleryFolder: env.CLOUDINARY_FOLDER_GALLERY,
-  musicFolder: env.CLOUDINARY_FOLDER_MUSIC_TRACKS,
-  musicArtworksFolder: env.CLOUDINARY_FOLDER_MUSIC_ARTWORKS,
+  cloudName: import.meta.env.CLOUDINARY_CLOUD_NAME,
+  apiKey: import.meta.env.CLOUDINARY_API_KEY,
+  apiSecret: import.meta.env.CLOUDINARY_API_SECRET,
+  galleryFolder: import.meta.env.CLOUDINARY_FOLDER_GALLERY,
+  musicFolder: import.meta.env.CLOUDINARY_FOLDER_MUSIC_TRACKS,
+  musicArtworksFolder: import.meta.env.CLOUDINARY_FOLDER_MUSIC_ARTWORKS,
 };
 
 const allImages = await getGalleryItems(config);
