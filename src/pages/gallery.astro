@@ -1,20 +1,26 @@
 ---
 import BaseLayout from "@layouts/BaseLayout.astro";
 import GalleryImages from "@components/gallery/GalleryImages.svelte";
-import getGalleryItems from "@scripts/generate-gallery";
+import getGalleryItems from "@scripts/generate-gallery-v2";
 
 const config = {
-  cloudName: import.meta.env.CLOUDINARY_CLOUD_NAME,
-  apiKey: import.meta.env.CLOUDINARY_API_KEY,
-  apiSecret: import.meta.env.CLOUDINARY_API_SECRET,
-  galleryFolder: import.meta.env.CLOUDINARY_FOLDER_GALLERY,
-  musicFolder: import.meta.env.CLOUDINARY_FOLDER_MUSIC_TRACKS,
-  musicArtworksFolder: import.meta.env.CLOUDINARY_FOLDER_MUSIC_ARTWORKS,
+  s3Client: {
+    bucket: import.meta.env.S3_BUCKET,
+    folderPrefix: import.meta.env.S3_FOLDER_PREFIX,
+    endpoint: import.meta.env.S3_ENDPOINT,
+    region: import.meta.env.S3_REGION,
+    accessKey: import.meta.env.S3_ACCESS_KEY,
+    accessSecret: import.meta.env.S3_ACCESS_SECRET,
+  },
+  cloudflareAccess: {
+    clientId: import.meta.env.CF_CLIENT_ID,
+    clientSecret: import.meta.env.CF_CLIENT_SECRET
+  }
 };
 
 const allImages = await getGalleryItems(config);
 
-const initialChunk = allImages.slice(0, 8);
+const initialChunk = allImages.slice(0, 10);
 
 const title = "Gallery";
 ---
@@ -24,5 +30,5 @@ const title = "Gallery";
   <div class="gallery-title" style="font-size: 2rem;">
     <h1>Gallery</h1>
   </div>
-  <GalleryImages client:load initial={initialChunk} allImages={allImages} />
+  <GalleryImages client:idle initial={initialChunk} allImages={allImages} />
 </BaseLayout>
