@@ -3,6 +3,8 @@ import { defineConfig } from 'astro/config';
 import svelte from '@astrojs/svelte';
 import cards from './src/data/cards.json';
 
+import tailwindcss from '@tailwindcss/vite';
+
 const firstSongSlug = cards[0].slug;
 
 // https://astro.build/config
@@ -15,5 +17,9 @@ export default defineConfig({
       status: 301,
       destination: `/music/${firstSongSlug}`
     }
+  },
+
+  vite: {
+    plugins: [tailwindcss()]
   }
 });

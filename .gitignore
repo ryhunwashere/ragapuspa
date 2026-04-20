@@ -39,3 +39,5 @@ gallery_items.json
 package-lock.json
 
 worker-configuration.d.ts
+
+src/assets/gallery

@@ -1,34 +1,58 @@
 ---
 import BaseLayout from "@layouts/BaseLayout.astro";
-import GalleryImages from "@components/gallery/GalleryImages.svelte";
-import getGalleryItems from "@scripts/generate-gallery-v2";
+import { Image } from "astro:assets";
 
-const config = {
-  s3Client: {
-    bucket: import.meta.env.S3_BUCKET,
-    folderPrefix: import.meta.env.S3_FOLDER_PREFIX,
-    endpoint: import.meta.env.S3_ENDPOINT,
-    region: import.meta.env.S3_REGION,
-    accessKey: import.meta.env.S3_ACCESS_KEY,
-    accessSecret: import.meta.env.S3_ACCESS_SECRET,
-  },
-  cloudflareAccess: {
-    clientId: import.meta.env.CF_CLIENT_ID,
-    clientSecret: import.meta.env.CF_CLIENT_SECRET
-  }
-};
+const imageFiles = import.meta.glob<{ default: ImageMetadata }>(
+  "/src/assets/gallery/*.{jpg,jpeg,png,webp,gif}",
+  { eager: true }
+);
 
-const allImages = await getGalleryItems(config);
-
-const initialChunk = allImages.slice(0, 10);
-
-const title = "Gallery";
+const images = Object.entries(imageFiles);
 ---
 
-<BaseLayout title={title}>
+<BaseLayout title="Gallery">
   <div style="height:6vh"></div>
-  <div class="gallery-title" style="font-size: 2rem;">
+  <div class="text-2xl">
     <h1>Gallery</h1>
   </div>
-  <GalleryImages client:idle initial={initialChunk} allImages={allImages} />
+
+  <div class="gallery-masonry w-full max-w-[1600px] px-2.5">
+    {images.map(([filePath, mod], i) => {
+      const publicId = filePath.split("/").pop()?.replace(/\.[^.]+$/, "") ?? "";
+      return (
+        <div class="masonry-item mb-4">
+          <Image
+            src={mod.default}
+            alt={publicId}
+            loading={i < 4 ? "eager" : "lazy"}
+            fetchpriority={i < 4 ? "high" : "auto"}
+            class="gallery-img w-full h-auto block opacity-0 transition-opacity duration-300 ease-in"
+            quality=1
+            format="webp"
+          />
+        </div>
+      );
+    })}
+  </div>
 </BaseLayout>
+
+<style>
+  .gallery-masonry {
+    columns: 320px;
+    column-gap: 1rem;
+    margin-left: 30px;
+    margin-right: 30px;
+  }
+
+  .masonry-item {
+    break-inside: avoid;
+  }
+
+  .gallery-img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 20px;
+    margin-bottom: 10px;
+  }
+</style>
