@@ -5,7 +5,7 @@
   "scripts": {
     "astro": "astro",
     "dev": "astro dev --host",
-    "create-gallery": "rm -r src/assets/gallery && mkdir src/assets/gallery",
+    "create-gallery": "rm -rf src/assets/gallery && mkdir -p src/assets/gallery",
     "generate-gallery": "tsx src/scripts/generate-gallery-v2.ts",
     "build": "npm run create-gallery && npm run generate-gallery && astro build",
     "preview": "astro preview --host"
