@@ -1,25 +1,34 @@
 // @ts-check
-import { defineConfig } from 'astro/config';
-import svelte from '@astrojs/svelte';
-import cards from './src/data/cards.json';
+import { defineConfig } from "astro/config";
+import svelte from "@astrojs/svelte";
+import cards from "./src/data/cards.json";
 
-import tailwindcss from '@tailwindcss/vite';
+import tailwindcss from "@tailwindcss/vite";
 
 const firstSongSlug = cards[0].slug;
 
 // https://astro.build/config
 export default defineConfig({
-  output: 'static',
+  output: "static",
   integrations: [svelte()],
 
   redirects: {
-    '/music': {
+    "/music": {
       status: 301,
-      destination: `/music/${firstSongSlug}`
-    }
+      destination: `/music/${firstSongSlug}`,
+    },
   },
 
   vite: {
-    plugins: [tailwindcss()]
-  }
+    plugins: [tailwindcss()],
+  },
+
+  image: {
+    service: {
+      entrypoint: "astro/assets/services/sharp",
+      config: {
+        webp: { effort: 6, alphaQuality: 70 },
+      },
+    },
+  },
 });

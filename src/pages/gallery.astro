@@ -4,7 +4,7 @@ import { Image } from "astro:assets";
 
 const imageFiles = import.meta.glob<{ default: ImageMetadata }>(
   "/src/assets/gallery/*.{jpg,jpeg,png,webp,gif}",
-  { eager: true }
+  { eager: true },
 );
 
 const images = Object.entries(imageFiles);
@@ -16,43 +16,59 @@ const images = Object.entries(imageFiles);
     <h1>Gallery</h1>
   </div>
 
-  <div class="gallery-masonry w-full max-w-[1600px] px-2.5">
-    {images.map(([filePath, mod], i) => {
-      const publicId = filePath.split("/").pop()?.replace(/\.[^.]+$/, "") ?? "";
+  <div class="columns-1 md:columns-2 lg:columns-3 gap-6 ...">
+  {
+    images.map(([filePath, mod], index) => {
+      const { width, height } = mod.default;
+      const aspectRatio = width / height;
+
       return (
-        <div class="masonry-item mb-4">
+        <div 
+          class="break-inside-avoid mb-6 rounded-[20px] bg-gray-100 overflow-hidden"
+          style={{ aspectRatio: `${aspectRatio}` }} 
+        >
           <Image
             src={mod.default}
-            alt={publicId}
-            loading={i < 4 ? "eager" : "lazy"}
-            fetchpriority={i < 4 ? "high" : "auto"}
-            class="gallery-img w-full h-auto block opacity-0 transition-opacity duration-300 ease-in"
-            quality=1
-            format="webp"
+            width={600}
+            alt="Gallery Image"
+            class="w-full h-auto block"
+            loading={index < 4 ? "eager" : "lazy"}
+            decoding="async"
+            quality="low"
           />
         </div>
       );
-    })}
-  </div>
+    })
+  }
+</div>
+
+  <style>
+    .columns-1 {
+      column-count: 1;
+      margin-bottom: 1%;
+      margin-left: 5px;
+      margin-right: 5px;
+    }
+    @media (min-width: 768px) {
+      .md\:columns-2 {
+        column-count: 2;
+      }
+    }
+    @media (min-width: 1024px) {
+      .lg\:columns-3 {
+        column-count: 4;
+      }
+    }
+
+    .columns-1 img,
+    .md\:columns-2 img,
+    .lg\:columns-3 img {
+      border-radius: 30px;
+      display: block;
+      width: 100%;
+      height: auto;
+      margin-top: 10px;
+      margin-bottom: 10px;
+    }
+  </style>
 </BaseLayout>
-
-<style>
-  .gallery-masonry {
-    columns: 320px;
-    column-gap: 1rem;
-    margin-left: 30px;
-    margin-right: 30px;
-  }
-
-  .masonry-item {
-    break-inside: avoid;
-  }
-
-  .gallery-img {
-    width: 100%;
-    height: auto;
-    display: block;
-    border-radius: 20px;
-    margin-bottom: 10px;
-  }
-</style>
