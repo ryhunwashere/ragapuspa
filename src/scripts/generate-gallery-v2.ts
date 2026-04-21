@@ -1,6 +1,7 @@
 import {
   ListObjectsV2Command,
   S3Client,
+  type ListObjectsV2Output,
   type S3ClientConfig,
 } from "@aws-sdk/client-s3";
 import fs from "fs";
@@ -55,7 +56,7 @@ async function listAllObjects(
   const all: any[] = [];
 
   while (true) {
-    const res = await client.send(
+    const res: ListObjectsV2Output = await client.send(
       new ListObjectsV2Command({
         Bucket: bucket,
         Prefix: prefix,
@@ -76,7 +77,7 @@ async function runWithConcurrency<T>(
   items: T[],
   limit: number,
   worker: (item: T) => Promise<void>,
-  delayMs = 150,
+  delayMs = 200,
 ) {
   const queue = [...items];
 
