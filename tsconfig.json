@@ -20,6 +20,7 @@
       "@scripts/*": ["./src/scripts/*"],
       "@stores/*": ["./src/stores/*"],
       "@styles/*": ["./src/styles/*"]
-    }
+    },
+    "types": ["node", "bun"]
   }
 }
