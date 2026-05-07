@@ -2,29 +2,21 @@
 FROM oven/bun:1.3.13-alpine AS build-stage
 WORKDIR /app
 
-COPY package.json ./
-RUN bun install
+COPY package.json bun.lock ./
+RUN bun install --frozen-lockfile
 
-ARG S3_BUCKET
-ARG S3_FOLDER_PREFIX
-ARG S3_ENDPOINT
-ARG S3_REGION
-ARG S3_ACCESS_KEY
-ARG S3_ACCESS_SECRET
-
-ENV S3_BUCKET=$S3_BUCKET
-ENV S3_FOLDER_PREFIX=$S3_FOLDER_PREFIX
-ENV S3_ENDPOINT=$S3_ENDPOINT
-ENV S3_REGION=$S3_REGION
-ENV S3_ACCESS_KEY=$S3_ACCESS_KEY
-ENV S3_ACCESS_SECRET=$S3_ACCESS_SECRET
+ARG S3_BUCKET=$S3_BUCKET
+ARG S3_FOLDER_PREFIX=$S3_FOLDER_PREFIX
+ARG S3_ENDPOINT=$S3_ENDPOINT
+ARG S3_REGION=$S3_REGION
+ARG S3_ACCESS_KEY=$S3_ACCESS_KEY
+ARG S3_ACCESS_SECRET=$S3_ACCESS_SECRET
 
 COPY . .
 RUN bun run build
 
-
 # 2. Deploy stage
-FROM nginx:stable-alpine AS deploy-stage
+FROM nginx:1.30.0-alpine3.23-slim AS deploy-stage
 
 RUN rm /etc/nginx/conf.d/default.conf
 COPY nginx.conf /etc/nginx/conf.d/default.conf
