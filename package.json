@@ -1,31 +1,26 @@
 {
   "name": "ragapuspa",
   "type": "module",
-  "version": "0.0.1",
+  "version": "0.1",
   "scripts": {
     "astro": "astro",
     "dev": "astro dev --host",
     "create-gallery": "rm -rf src/assets/gallery && mkdir -p src/assets/gallery",
     "generate-gallery": "bun src/scripts/generate-gallery-v2.ts",
-    "build": "bun run create-gallery && bun run generate-gallery && astro build",
+    "build": "bun run create-gallery && bun run generate-gallery && astro build && rm -r dist/_astro/*.jpg",
     "preview": "astro preview --host"
   },
   "dependencies": {
-    "@astrojs/svelte": "^8.0.5",
+    "@astrojs/svelte": "^8.1.0",
     "@astrojs/ts-plugin": "^1.10.7",
-    "@aws-sdk/client-s3": "^3.1032.0",
-    "@aws-sdk/s3-request-presigner": "^3.1032.0",
-    "@tailwindcss/vite": "^4.2.2",
-    "astro": "^6.1.7",
-    "cloudinary": "^2.9.0",
-    "dotenv": "^17.4.2",
+    "@tailwindcss/vite": "^4.2.4",
+    "astro": "^6.3.0",
     "gsap": "^3.15.0",
-    "svelte": "^5.55.4",
-    "tailwindcss": "^4.2.2",
-    "tsx": "^4.21.0",
-    "typescript": "^5.9.3"
+    "svelte": "^5.55.5",
+    "tailwindcss": "^4.2.4"
   },
   "devDependencies": {
+    "typescript": "^6.0.3",
     "@types/node": "^25.6.0",
     "@types/bun": "^1.3.13"
   }
