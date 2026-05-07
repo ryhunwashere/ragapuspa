@@ -26,11 +26,11 @@ const title = "Music";
     <MusicDescriptionWrapper />
 
     <div class="playback-container">
-      <PlaybackButton client:visible />
+      <PlaybackButton client:idle />
     </div>
 
     <div class="wheel-container">
-      <Wheel client:load initialSongSlug={song} cards={cards} />
+      <Wheel client:idle initialSongSlug={song} cards={cards} />
     </div>
 
     <AudioPlayer client:idle />
